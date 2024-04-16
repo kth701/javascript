@@ -13,7 +13,7 @@ console.log("컴퓨터:"+com)
 
 var game = prompt("가위,바위,보 중 선택?", "가위")
 
-var gameName
+var gameNum
 switch(game){
   case "가위":
     gameNum=1; break
