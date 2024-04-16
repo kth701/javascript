@@ -26,10 +26,14 @@ switch(game){
 }
 
 
+console.log("내:"+gameNum)
+
 if (com == gameNum)
   document.write("잘 맞췄습니다. 축하 드립니다.")
 else 
   document.write("틀렸습니다. 다시 시도해보세요.")
+
+
 
 /*
 let site = prompt("네이버, 다음, 네이트, 구글 중 \
