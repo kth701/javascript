@@ -17,9 +17,12 @@ calcSum(10,20,30)
 
 // 함수 정의
 // 4. 가변 인자
-function calcSum(...values){
-
+function calcSum(...values){// 배열구조=> values[0],values[1],....
+  // for (i=0; i<values.length; i++){
+  //   console.log(values[i])
+  // }
   for (const value of values){
+    // values값들을 순차적으로 하나씩 꺼집어내어 value저장
     console.log(value)
   }
 
