@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>for활용</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
   <!-- <script src="js/for_ex01.js"></script> -->
   <!-- <script src="js/for_ex02.js"></script> -->
   <!-- <script src="js/for_ex03.js"></script> -->
@@ -12,10 +14,28 @@
   
 </head>
 <body>
-  <h1>for문 활용하기</h1>
+  <div class="container">
+    <h1>for/function문 활용하기</h1>
+
+    <hr>
+    <div>
+      <button class="border border-secondary-subtle rounded"
+              onclick="flower('무궁화')">무궁화</button>
+      <button class="border border-secondary-subtle rounded"
+              onclick="flower('장미')">장미</button>
+      <button class="border border-secondary-subtle rounded"
+              onclick="flower('국화')">국화</button>  
+    </div>
+    <div class="alert alert-danger mt-3 mess" role="alert">
+      A simple danger alert—check it out!
+    </div>
+
+  </div>
 
 
 
-  <script src="js/fun_ex01.js"></script>
+
+  <!-- <script src="js/fun_ex01.js"></script> -->
+  <script src="js/fun_ex02.js"></script>
 </body>
 </html>

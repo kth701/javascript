@@ -13,18 +13,19 @@ document.write( return_num2(9) )
 var name1 = "홍길순"    //전역변수
 function fun_local() {
   var name2 = "홍길동"    //지역변수(함수가 실행하는 동안에만 값을 유지)
-
+  name3 = "강감찬 "       // 함수안에서 전역변수 선언시 var키워드 생략하기
   console.log("name1:"+name1)
-  console.log("name2:"+name2)
+  console.log("name2:"+name2,name3)
 }
 function fun_local2() {
   var name2 = "동길이"  // 지역변수
   console.log("name1:"+name1)
-  console.log("name2:"+name2)
+  console.log("name2:"+name2,name3)
 }
 fun_local()
 fun_local2()
 //console.log(name1, name2)   // error: name2은 지역변수로 없는 변수로 인식
+console.log(name1, name3)
 
 
 /*
