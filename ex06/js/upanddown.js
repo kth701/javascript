@@ -14,18 +14,39 @@ var _counter = document.querySelector('#counter')
 
 // 2. 이벤트 등록하기
 // 확인버튼에 이벤트 등록하기
+/*
 _btnCheck.addEventListener('click',()=>{
-  var userNum = _try.value
-  alert(`사용자가 입력한 수: ${userNum}`)
+  // var userNum = _try.value
+  // alert(`사용자가 입력한 수: ${userNum}`)
+  finding()
 })
+*/
+_btnCheck.addEventListener('click',finding)
+
 // 숫자 입력란에서 enter키 이벤트 등록하기
 _try.addEventListener('keypress',(e)=>{
+  // e: 이벤트가 발생한 객체의 정보가 전달됨. 
+  // 여기서는 key의 기본정보중 keycode값이 키를 구분해줌
   if (e.keyCode == 13) {
-    var userNum = _try.value
-    alert(`사용자가 입력한 수: ${userNum}`)
+    // var userNum = _try.value
+    // alert(`사용자가 입력한 수: ${userNum}`)
+    finding() 
   }
 
 })
+
+// 입력받은 숫자에 대한 조건 처리하는 함수
+function finding(){
+  var userNum = _try.value
+  //alert(`사용자가 입력한 수: ${userNum}`)
+
+  if (userNum >=1 && userNum<=100){
+
+  } else {
+    alert("1과 100사이의 숫자를 입력하세요.")
+  }
+}
+
 // '다시' 버튼 클릭시 수행 할 함수정의(태그에서 호출)
 function fun_reset() {
   window.location.reload()
