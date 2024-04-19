@@ -35,12 +35,23 @@ _try.addEventListener('keypress',(e)=>{
 
 })
 
+var counter = 0// 횟수 체크
 // 입력받은 숫자에 대한 조건 처리하는 함수
 function finding(){
   var userNum = _try.value
   //alert(`사용자가 입력한 수: ${userNum}`)
 
+  counter++
   if (userNum >=1 && userNum<=100){
+
+    if (rnd == userNum) {// 컴퓨터가 생성한 숫자== 사용자 입력 숫자
+      _display.innerHTML = "<h1>맞혔습니다.</h1>"
+    } else if (rnd > userNum) {
+      _display.innerHTML = "UP!"
+    } else {
+      _display.innerHTML = "DOWN!"
+    }
+    _counter.innerHTML = "시도 횟수: "+counter+"회"
 
   } else {
     alert("1과 100사이의 숫자를 입력하세요.")
