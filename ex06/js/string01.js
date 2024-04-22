@@ -33,9 +33,13 @@ else
 console.log( str1.indexOf('a',4)) // 특정 인덱스번호 부터 검색
 
 // 정규식 표현
-console.log( str1.search(/Javascript/)  )   //검색 성공: index 번호
-console.log( str1.search(/HTML/)  ) // 검색 실패
+console.log("정규식표현:search(/~~/)")
+console.log( str1  ) 
+console.log( str1.search(/Javascript/)  )   //검색 성공: index 0번호
+console.log( str1.search(/script/)  ) 
+console.log( str1.search(/HTML/)  ) // 검색 실패(-1반환)
 
+console.log("--- includes(): true/false")
 console.log( str1.includes('Javascript')) //검색성공여부 : true/false
 console.log( str1.includes('HTML'))
 
@@ -45,7 +49,8 @@ console.log('endsWith()', str1.endsWith('!!'))
 console.log('endsWith()', str1.endsWith('HTML'))
 
 // 특정 위치에 있는 문자열 추출
-console.log('javascript'.charAt(5))
+console.log('-- charAt(인덱번호): 특정위치에 있는 문자추출')
+console.log('javascript','javascript'.charAt(5))
 
 // --------------------------- //
 /* HTML 요소와 javascript 연결 */

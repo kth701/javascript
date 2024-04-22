@@ -1,8 +1,10 @@
 // 문자열 다루기: 위치 저정하여 선택하기
-
+console.log("-- slice(시작인덱스, 마지막인덱스): 문자추출결과:0~n-1까지")
 console.log('javascript'.slice(0,4))// 0~n-1
 console.log('javascript'.slice(0))
 console.log('javascript'.slice(4))// n이후
+
+console.log("-- substring(시작인덱스, 마지막인덱스): 문자추출결과:0~n-1까지")
 console.log('javascript'.substring(0,4))
 console.log('javascript'.substring(0))
 // 시작>마지막: 음수 인식
@@ -11,6 +13,7 @@ console.log('javascript'.substring(3,-1))// (3,0)
 console.log('javascript'.substr(4,5)) // (시작번호, 개수)
 
 // 문자열 변환
+console.log(".replace(이전문자, 바꿀문자)")
 console.log('image1.png'.replace('1.png','2.png'))
 const inputText = '홍길동\n홍길순' // "\t,\n,\\,\',.. "
 console.log(inputText)

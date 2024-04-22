@@ -1,24 +1,31 @@
 // 문자열 나누기
+console.log("-- .split('문자'): 특정문자를 기준으로 분리해서 배열구조로 반환")
 const myUrl = "http://example.com/?id=12345&name=Lion&age=28"
 // 특정 문자를 기준으로 분리하여 배열구조전환
 const url_arr =  myUrl.split('&') 
+console.log(myUrl,"&문자를 기준로 분해")
+console.log(url_arr)
 
-/*
+// 변수 = 데이터
+// 배열 참조형변수 = 주소
+
 // console.log(url_arr[0])
 // console.log(url_arr[1])
 // console.log(url_arr[2])
 
-console.log("-- 확장 for...of")
+
+console.log("-- 확장 for...of : 배열객체(구조)")
 for (var value of url_arr){
   console.log(value)
 }
-console.log("--forEach()")
+console.log("-- 배열객체.forEach(화살표 함수표현이 가능)")
 url_arr.forEach((value)=>{ console.log(value)})
-*/
+
 console.log("-- for")
 for (i=0; i<url_arr.length; i++){
   console.log(url_arr[i])
 }
+
 console.log("-- url2")
 var url_arr2 = myUrl.split(/&|\?/)
 url_arr2.forEach( v => console.log(v))
