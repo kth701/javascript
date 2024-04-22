@@ -47,7 +47,7 @@ const userDataList = [
 
 
 // 데이터 표시
-function updateList(){
+function updataList(){
   let ul_html = ``;
 
   for ( const data of userDataList){
@@ -67,7 +67,7 @@ function sortByAsc(){
   // for ( const data of userDataList){
   //   console.log(data)
   // }
-  updateList()
+  updataList()
 }
 // 내림차순 정렬
 function sortByDesc(){
@@ -76,7 +76,7 @@ function sortByDesc(){
   // for ( const data of userDataList){
   //   console.log(data)
   // }
-  updateList()
+  updataList()
 }
 
 // 정렬 버튼 이벤트 등록
