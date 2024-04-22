@@ -35,7 +35,7 @@ console.log(arr_str)
 // })
 
 
-//데이터
+//데이터(전역변수)
 const userDataList = [
   {id:2, name:'곰'},
   {id:10, name:'여우'},
@@ -43,8 +43,6 @@ const userDataList = [
   {id:29, name:'기린'},
   {id:101, name:'호랑이'}
 ]
-
-
 
 // 데이터 표시
 function updataList(){
