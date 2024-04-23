@@ -24,10 +24,30 @@ document.querySelectorAll('.button').forEach( (btn) => {
 
       // 조건처리
       const filterList = userDataList.filter( (data)=> data.age >= targetAge )
+
+      // 결과 값은 콘솔창 출력
       console.log("조건처리 결과:", filterList)
+      filterList.forEach( (item) => {
+        console.log(item.name, item.age)
+      })
+
+
+      // 결과 값은 웹문서 출력
+      updateList(filterList)
 
     })
 })
+
+// 결과값 출력하는 함수 정의
+function updateList(filterList){
+  let listHtml = ``
+
+  for (const data of filterList){
+    listHtml += `<li>${data.name} : ${data.age}</li>`
+  }
+  document.querySelector('.user_list').innerHTML = listHtml
+
+}
 
 
 
