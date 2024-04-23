@@ -50,4 +50,35 @@ function updateList(filterList){
 }
 
 
+// 유사 배열 => 배열 전환
+const allDiv = document.querySelectorAll('.spread_box > div')
+console.log('div 개수:', allDiv.length)
+for (let el of allDiv){
+  console.log(el)
+}
+console.log(allDiv[0])
+// error: allDiv.filter is not a function
+// 배열이아니고 유사배열인 관계로 .filter()을 지원하지 않음
+// const filter_ex = allDiv.filter( (element)=> element.classList.contains('on') )
+
+// 스프레드연산(...): 유사배열 -> 배열 전환
+const filter_arr = [...allDiv]
+const filter_ex = filter_arr.filter( (element) => element.classList.contains('on') )
+console.log(filter_ex[0])
+
+const myString = '안녕하세요'
+console.log(myString)
+console.log([...myString])
+
+const newString =[...myString].map( (ch) => `${ch}!` )
+console.log(newString)
+const newString2 = newString.reduce( (a,b) => a+b )
+console.log(newString2)
+
+console.log("--- 유사배열->배열->map()->reduce() -> 최종배열")
+const str1 = [...myString]
+              .map( (ch) => `${ch}!` )
+              .reduce( (a,b) => a+b )
+console.log('배열.map().reduce() =>', str1)              
+
 
