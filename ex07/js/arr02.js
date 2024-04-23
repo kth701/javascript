@@ -59,3 +59,4 @@ console.log('indexOf(): ',arr10.indexOf('홍길순1'))
 console.log('indexOf(): ',arr10.includes('홍길순'))
 console.log('indexOf(): ',arr10.includes('홍길순1'))
 console.log('indexOf(): ',arr10.lastIndexOf('홍길동'))
+

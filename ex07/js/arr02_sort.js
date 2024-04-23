@@ -3,8 +3,8 @@ const arr2 = arr.concat() //복사
 
 const arr3 = [10,99,30,1] 
 
-console.log(arr)
-console.log(arr2)
+console.log('오름차순: ',arr)
+console.log('내림차순: ',arr2)
 
 // arr3.sort()   // 오름차순
 // console.log(arr3)
@@ -84,3 +84,11 @@ document.querySelector('.asc').addEventListener('click', ()=>{
 document.querySelector('.desc').addEventListener('click', ()=>{
   sortByDesc()
 })
+
+
+console.log("-- sort(), reverse() : 유니코드 기준으로 정렬")
+
+const sort_test = [10,9,20,1]
+
+sort_test.sort()
+console.log(sort_test)
