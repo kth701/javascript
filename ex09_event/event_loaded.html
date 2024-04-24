@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOMContentLoaded</title>
+  <style>
+    .container {
+      border: 1px solid gray;
+
+      width: 500px;height: 200px;
+      margin-left: auto;margin-right: auto;
+      padding: 10px;
+
+      display: flex;
+      justify-content: center;/* 수평정렬 */
+      align-items: center ;/*수직정열 */
+    }
+    .box {
+      width: 100px;height: 100px;
+      margin: 10px;
+
+      border: 1px solid rgb(156, 86, 86);
+    }
+  </style>
+
+  <script src="loaded.js" defer ></script>
+</head>
+<body>
+    <div class="container">
+      <div class="box box1">박스1</div>
+      <div class="box box2">박스2</div>
+      <div class="box box3">박스3</div>
+    </div>
+
+    <!-- 자바스크립트 태그요소 맨 마지막에 
+         실행시에는 DOM 호출정상 처리
+    <script src="loaded.js"></script>
+    <script></script>
+    -->
+</body>
+</html>

@@ -6,11 +6,18 @@
   <title>이벤트</title>
 </head>
 <body>
+  
+  <hr>
   <div>
     <button class="btn1">버튼1</button>
     <button class="btn2" id="id_btn2" data-num="200">버튼2</button>
     <button class="btn3" onClick="alert('click');">버튼3</button><!--태그 속성에 이벤트등록-->
     <button class="btn4" id="id_btn4" data-num="400">버튼4</button>
+    <hr>
+    <button class="btn5">이벤트1회 실행하기</button>
+    <hr>
+    <button class="btn6">버튼6</button>
+    <button class="btn7">버튼7(버튼6 이벤트 삭제하기)</button>
     <div class="btn_mess"></div>
   </div>
 
@@ -19,7 +26,25 @@
     const button1 = document.querySelector('.btn1')
     const button2 = document.querySelector('.btn2')
     const button4 = document.querySelector('.btn4')
+    const button5 = document.querySelector('.btn5')
+    const button6 = document.querySelector('.btn6')
+    const button7 = document.querySelector('.btn7')
     //console.log(button)
+
+    // 이벤트 삭제하기
+    button6.addEventListener('click', onClickBtn6)
+    button7.addEventListener('click',()=>{ 
+      // button6이벤트 해제
+      button6.removeEventListener('click',onClickBtn6 )
+      alert('버튼6 이벤트 삭제되었습니다.')
+    })
+    function onClickBtn6(){
+      alert('버튼6')
+    }
+    // 이벤트 1회 실행
+    // 옵션 지정
+    const option = { once: true}
+    button5.addEventListener('click',()=>{ alert('버튼5 클릭')}, option )
     
     // 이벤트 등록: js소스 처리하는 방법
     // 이벤트타킷.addEventListener(이벤트종류, 수행할 함수,옵션)
