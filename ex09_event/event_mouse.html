@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>마우스 이벤트 처리</title>
+  <style>
+    .log2 {
+      width: 300px;height: 300px;
+      background-color: rgb(183, 183, 113);
+
+      margin-left: auto;margin-right: auto;
+    }
+    .log2_box {
+      width: 100px;height: 100px;
+      background: red;
+      border: 1px solid black;
+      
+    }
+  </style>
+</head>
+<body>
+  <h3>링크</h3>
+  <hr>
+  <ul>
+    <li ><a href="http://www.naver.com" class="link1">네이버</a></li>
+    <li ><a href="http://www.daum.net" class="link2">다음</a></li>
+  </ul>
+
+
+  <h3>이벤트 작동 설정하기</h3>
+  <div class="box3">
+    <button class="btn10">버튼작동하기</button>
+    <button class="btn11">버튼Event</button>
+  </div>
+  <hr>
+  <h3>윈도우 리사이징 이벤트</h3>
+  <hr>
+  <div class="box2">
+    <p>윈도우 가로길이: <span id="widthLog">0</span></p>
+    <p>윈도우 세로길이: <span id="heightLog">0</span></p>
+  </div>
+
+  <h3>키보드 입력 이벤트</h3>
+  <hr>
+  <textarea class="textarea" cols="30" rows="10"></textarea>
+  <p>현재 <span class="string_num">0</span> 문자를 입력 중입니다.</p>
+
+
+  <hr>
+  <h3>mousedown/mouseup/mousemove....</h3>
+  <hr>
+  <div class="box1">
+    <div class="log2">
+      <div class="log2_box"></div>
+    </div>
+  </div>
+
+
+  <script>
+    // 기본 이벤트 작동 해지
+    document.querySelector('.link1').addEventListener('click',(e)=>{
+      e.preventDefault()// 기본 이벤트 작동 해제
+      alert('링크1 테스트')
+    })
+    // 버튼 작동하기
+    const button10 = document.querySelector('.btn10')
+    const button11 = document.querySelector('.btn11')
+    console.log(button10, button11)
+
+    button10.addEventListener('click',()=>{
+      alert('버튼작동하기 ...')
+      
+      button11.dispatchEvent(new Event('click'))
+      //button11.click()
+    })
+    button11.addEventListener('click',()=>{
+      alert('버튼Event')
+    })
+
+
+
+
+    // 윈도우 이벤트 (리사이징)
+    const widthLog = document.querySelector('#widthLog')
+    const heightLog = document.querySelector('#heightLog')
+    console.log(widthLog, heightLog)
+    // 현재 브라우저 창 가로/세로 값 추출: 
+    // window.innerWidth,window.innerHeight
+    widthLog.innerText =  window.innerWidth + 'px'
+    heightLog.innerText =  window.innerHeight + 'px'
+
+    window.addEventListener('resize', ()=>{
+      widthLog.innerText =  window.innerWidth + 'px'
+      heightLog.innerText =  window.innerHeight + 'px'
+    })
+
+
+    // 키보드 이벤트
+    /*
+    document.querySelector('.textarea').addEventListener('keydown',()=>{
+      console.log('키가 눌러졌습니다.')
+    })
+    document.querySelector('.textarea').addEventListener('keyup',()=>{
+      console.log('키 눌림 해제')
+    })
+    document.querySelector('.textarea').addEventListener('keypress',()=>{
+      console.log('문자가 입력되었습니다.')
+    })
+    */
+    const textarea = document.querySelector('.textarea')
+    const string_num = document.querySelector('.string_num')
+
+    textarea.addEventListener('keyup', (e)=>{
+      const inputText = textarea.value
+      string_num.innerHTML = inputText.length;
+
+      // 키 정보
+      console.log(e.key) // 키보드 문자
+      console.log(e.code) //'KeyA'
+      console.log(e.keyCode)// 문자 코드 번호 
+      console.log('altkey: ',e.altkey) // false
+
+    })
+
+
+
+
+
+
+
+
+    const logArea = document.querySelector('.log2')
+    //console.log(logArea)
+
+    logArea.addEventListener('mousedown', ()=>{ logArea.innerHTML='마우스 버튼을 눌렀을 때'})
+    logArea.addEventListener('mouseup', ()=>{ logArea.innerHTML='마우스 버튼을 놓았을 때'})
+    //logArea.addEventListener('mousemove', ()=>{ logArea.innerHTML='마우스 이동 할 때'})
+
+    logArea.addEventListener('mouseenter', ()=>{ console.log('mouseenter')})
+    logArea.addEventListener('mouseleave', ()=>{ console.log('mouseleave')})
+
+    //logArea.addEventListener('mouseover', ()=>{ console.log('mouseover 할 때')})
+    //logArea.addEventListener('mouseout', ()=>{ console.log('mouseout 할 때')})
+  </script>
+</body>
+</html>
