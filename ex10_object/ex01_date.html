@@ -6,6 +6,10 @@
   <title>날짜</title>
 </head>
 <body>
+  <div class="box3">
+    <div class="time">00</div>
+    <div class="counter">00</div>
+  </div>
   <div class="box2">
     <div class="date_calc"></div>
   </div>
@@ -18,6 +22,53 @@
 
 
   <script>
+    // 카운트 다운
+    const totalTime = 10000 // 10초 설정
+    const oldTime2 = Date.now() // 실행 시점의 시간
+    
+    // 타이머를 중지하기위해 참조변수 사용
+    const timeId = setInterval(()=>{
+      const currentTime = Date.now()
+      // 시간차
+      const diff = currentTime - oldTime2 // 현재시간 - 실행시점 시간
+
+      // 남은 밀리초 계산
+      const remainMSec = totalTime - diff
+      const remainSec = Math.ceil(remainMSec/1000)
+
+      let label = `남은 시간 ${remainSec}초`
+
+      // 0초 이하일 경우 
+      if ( remainMSec <= 0) {
+        // 타이머 종료
+        clearInterval(timeId)
+        label = '종료'
+      }
+
+      // 남은 시간 화면 표시
+      document.querySelector('.counter').innerHTML = label
+
+    }, 1000)
+    
+
+
+
+
+    // 경과 시간 확인하기
+    const oldTime = Date.now() // 현재 날짜를 타임스탬프표시
+
+    // setInterval(수행할 함수, 밀리초)
+    setInterval( ()=>{
+      const currentTime = Date.now()
+      // 경과한 밀리초 
+      const diff = currentTime - oldTime
+
+      // 밀리초 -> 초 전환
+      const sec = Math.floor(diff/1000)
+      document.querySelector('.time').innerHTML = `${sec}초 경과`
+    } , 1000)
+
+    //-------------
     const date3 = new Date()
     const local = date3.toLocaleString()
     const localedate = date3.toLocaleDateString()
@@ -27,9 +78,9 @@
     console.log('localedate:', localedate)
     console.log('localetime:',localetime)
 
-    // 날짜 문자열의 타임스탬프
+    // 날짜 문자열의 타임스탬프(날짜를 밀로초 계산하여표시)
     const num1 = Date.parse('2024/4/24')
-    console.log('2024/4/24 ',num1, new Date().getTime())
+    console.log('2024/4/24 ',num1, new Date().getTime(),Date.now())
 
 
     // 남은 날짜 계산하기
