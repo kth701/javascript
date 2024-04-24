@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>날짜</title>
+</head>
+<body>
+  <div class="box2">
+    <div class="date_calc"></div>
+  </div>
+  <hr>
+  <div class="box1">
+    <div id="log">000</div>
+    <div id="log2">000</div>
+    <div id="log3">000</div>
+  </div>
+
+
+  <script>
+    const date3 = new Date()
+    const local = date3.toLocaleString()
+    const localedate = date3.toLocaleDateString()
+    const localetime = date3.toLocaleTimeString()
+
+    console.log('local:',local)
+    console.log('localedate:', localedate)
+    console.log('localetime:',localetime)
+
+    // 날짜 문자열의 타임스탬프
+    const num1 = Date.parse('2024/4/24')
+    console.log('2024/4/24 ',num1, new Date().getTime())
+
+
+    // 남은 날짜 계산하기
+    var today = new Date()
+    var nowYear = today.getFullYear()
+
+    // getTime(): 1970.01.01일부터 경과한 시간을 밀리초로 표시
+    var theDate = new Date(nowYear, 3,25)
+    var diffDate = theDate.getTime() - today.getTime()
+    //console.log('getTime():', today.getTime())
+    console.log(diffDate)
+    var result = Math.ceil( diffDate/(60*1000*60*24) )
+
+    document.querySelector('.date_calc')
+          .innerHTML = `크리스마는 ${result}일 남았습니다.`
+
+
+    //-----------    
+    const date = new Date()
+
+    const year = date.getFullYear() // 연도 정보 , .getXXXX() : 추출
+    const month = date.getMonth() + 1 //0~-11
+    const date_day = date.getDate() //1~31
+
+    const hour = date.getHours() // 시간 0~23
+    const minutes = date.getMinutes()//분
+    const seconds = date.getSeconds() // 초
+    const milli = date.getMilliseconds()// 밀리초
+
+    const day = date.getDay() // 0~6(일~토)
+    const dayList = ['일','월','화','수','목','금','토']
+    
+    let ampm  // 오전, 오후 구분
+    let hour2
+    if (hour < 12) {
+      ampm = '오전'
+      hour2 = hour
+    } else {
+      ampm ='오후'
+      hour2 = hour - 12
+    }
+
+    document.querySelector('#log')
+          .innerHTML = `지금은 ${year}년 ${month}월 ${date_day}일 입니다.`
+
+    document.querySelector('#log2')
+          .innerHTML = `지금은 ${ampm}${hour2}시 ${minutes}분 ${seconds}:${milli}초 입니다.`
+
+    document.querySelector('#log3')
+          .innerHTML = `오늘은 ${dayList[day]}요일 입니다.`
+          
+  var DDay = new Date(2024,4,1) 
+  var year1 = DDay.getFullYear() // 연도 정보 , .getXXXX() : 추출
+  var month1 = DDay.getMonth()
+  var date_day1 = DDay.getDate() //1~31 
+
+  console.log(year1, month1, date_day1)
+
+  DDay.setFullYear(2000)
+
+  year1 = DDay.getFullYear() 
+  month1 = DDay.getMonth()
+  date_day1 = DDay.getDate()
+
+  console.log(year1, month1, date_day1)
+
+  </script>
+</body>
+</html>
