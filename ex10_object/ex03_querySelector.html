@@ -6,43 +6,112 @@
   <title>요소 다루기</title>
   <style>
     #foo {
-      color: red;
+      color: rgb(92, 119, 228);
     }
   </style>
+  
 </head>
 <body>
   <div class="box1">
     <h3>셀렉터 사용하기</h3>
     <div>
       <ul class="list">
-        <li class="item"></li>
-        <li class="item">
-        </li>
-        <li class="item"></li>
+        <li class="item">홍길동</li>
+        <li class="item">강감찬</li>
+        <li class="item">이순신</li>
       </ul>
       <div id="foo"></div>
     </div>
   </div>
 
   <script>
+    // '<script>'객체 생성
+    const scriptElement = document.createElement('script')
+    // '<scrpt src="js/import01.js>'
+    scriptElement.src ='js/import01.js' 
+    scriptElement.type = 'text/javascript'
+    // <head>자식요소로 <script>를 추가
+    document.head.appendChild(scriptElement)
+
+
+
+
+    console.log("----- html요소 읽기 ---")
+    console.log(document.documentElement)
+
+    console.log("----- head요소 읽기 ---")
+    console.log(document.head)
+
+    console.log("----- body요소 읽기 ---")
+    console.log(document.body)
+
+
+    // document요소 선택자
     //foo 요소
     document.querySelector('#foo').innerText = "<h1>foo선택하기</h1>"
     // item 요소
-    document.querySelector('.list  .item:nth-child(2)')
-            .innerHTML = "<a href='www.google.com'>구글</a>"
+    //document.querySelector('.list  .item:nth-child(2)')
+    //        .innerHTML = "<a href='www.google.com'>구글</a>"
 
     const foo = document.getElementById('foo') 
     console.log(foo)  
     
     const items = document.querySelectorAll('.item')
+    //const items = document.getElementsByClassName('item')
     console.log("item class:",items)
 
     for ( let item of items){// 배열구조 하나씩 꺼집어내어 처리
       console.log(item)
     }
-    consoel.log("-- for")
+    console.log("-- for")
     for (let idx=0; idx<items.length; idx++)
-        console.log( items[i] )
+        console.log( items[idx] )
+
+    console.log("-- forEach(콜백함수)")
+
+    var list_cnt = items.length;
+    console.log('items total: ', list_cnt)
+    var list_href = [
+                      "http://www.google.com",
+                      "http://www.naver.com",
+                      "http://www.daum.net"
+                    ]
+    /*
+    var list_href = [
+                    [
+                    "http://www.google.com",
+                    "http://www.naver.com",
+                    "http://www.daum.net"
+                    ],
+                    ["구글","네이버","다음"]
+                ]   
+    */                 
+                    
+    
+    items.forEach( (value, idx) => {
+      console.log(value, idx)
+
+      value.style.border = "1px solid red"
+      value.style.padding = '5px'
+      value.style.margin = '5px'
+
+      // 이벤트 등록
+      value.addEventListener('click', () => { 
+        alert(value.innerText)
+        //location.href = 'http://www.google.com'
+        location.href = list_href[idx] // 배열에 있는 문자열
+      })
+
+      value.addEventListener('mouseover',()=>{
+        value.style.cursor = 'pointer'
+        value.style.color = 'rgb(92, 119, 228)'
+      })
+      value.addEventListener('mouseout',()=>{
+        value.style.cursor = ''
+        value.style.color = ''
+      })
+
+    })
     
   </script>
 </body>
