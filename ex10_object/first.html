@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>1페이지</h1>
+  <button class="prev">이전</button>
+  <button class="next">다음</button>
+  <a href="first2.html">2페이지이동</a>
+
+  <script>
+    document.querySelector('.prev')
+            .addEventListener('click',()=>{
+              //history.back() // 이전
+              history.go(-1) 
+            })
+
+    document.querySelector('.next')
+            .addEventListener('click',()=>{
+              //history.forward() //다음
+              history.go(1) 
+            })            
+  </script>
+</body>
+</html>
