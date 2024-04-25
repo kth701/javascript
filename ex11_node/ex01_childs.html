@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>부모/자식/전후 요소</title>
+</head>
+<body>
+
+  <div id="parent">
+    <div id="child1">자식요소1</div>
+    <div id="child2">자식요소2</div>
+    <div id="child3">자식요소3</div>
+  </div>
+  
+
+  <script>
+    const parent01 = document.querySelector('#parent')
+    console.log(parent01)
+
+    const firstChild = parent01.firstElementChild
+    console.log(firstChild)
+    // 첫째 노드의 다음노드
+    const secondChild = firstChild.nextElementSibling
+    console.log(secondChild)
+    // 자식요소중 마지막 요소(노드)
+    const lastChild = parent01.lastElementChild
+    console.log(lastChild)
+    // 현재 노드의 이전노드
+    const prevChild = secondChild.previousElementSibling
+    console.log(prevChild)
+    // 부모 요소
+    const parent02 = lastChild.parentNode 
+    console.log(parent01)
+
+  </script>
+</body>
+</html>
