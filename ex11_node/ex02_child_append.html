@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>요소(노드)추가</title>
+  <style>
+    .container, .container2 {
+      display: flex;
+
+      width: 350px;
+      padding: 30px;
+      margin-left: auto;margin-right: auto;
+
+      border: 1px dotted red;
+    }
+    .container div,  .container2 div {
+      border: 1px solid rgb(141, 141, 207);
+      padding: 10px;
+      margin: 3px 5px;
+    }
+    #myBox, #myBox2, #myBox3 {
+      display: block-inline;
+      border: 1px solid yellowgreen;
+      width: 150px;
+      margin: 10px auto;
+      padding: 10px;
+
+    }
+  </style>
+</head>
+<body>
+
+
+  <div id="myBox3">요소추가3</div>
+  <div id="myBox2">요소추가2</div>
+
+  <div class="container2">
+    conatiner2
+    <div>자식요소1</div>
+    <div id="box2">자식요소2</div>
+  </div>
+
+  <hr>
+  <div id="myBox">요소추가</div>
+  <div class="container">
+    contianer
+    <div>자식 요소1</div>
+    <div>자식 요소2</div>
+  </div>
+
+  <script>
+    const container2 = document.querySelector('.container2')
+    const myBox2 = document.querySelector('#myBox2')    
+    const myBox3 = document.querySelector('#myBox3')  
+    const box2 = document.querySelector('#box2')   
+
+    const container = document.querySelector('.container')
+    const myBox = document.querySelector('#myBox')
+    console.log(container)
+    console.log(myBox)
+    
+    setTimeout(()=>{
+      // 부모노드.insertBefore(자식노드, 희망위치의 노드)
+      //container2.insertBefore(myBox2, container2.firstElementChild)
+      container2.before(container)
+
+    }, 3000)
+
+    setTimeout( ()=>{
+      //container2.insertBefore(myBox3, box2)
+      container.after(myBox3)
+    },6000)
+
+    setTimeout( ()=>{
+      // 특정 자식요소 삭제(단일요소)
+      container.removeChild(document.querySelector('.container div:nth-child(1)'))
+    },2000)
+    setTimeout( ()=>{
+      container.remove() // 현재 요소 삭제
+    },7000)    
+
+
+
+
+    
+
+
+    setTimeout(()=>{
+      // 부모노드.appendChild(자식노드)
+      container.appendChild(myBox)
+    }, 3000)
+  </script>
+</body>
+</html>
