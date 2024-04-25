@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>요소 다루기</title>
+  <style>
+    #foo {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div class="box1">
+    <h3>셀렉터 사용하기</h3>
+    <div>
+      <ul class="list">
+        <li class="item"></li>
+        <li class="item">
+        </li>
+        <li class="item"></li>
+      </ul>
+      <div id="foo"></div>
+    </div>
+  </div>
+
+  <script>
+    //foo 요소
+    document.querySelector('#foo').innerText = "<h1>foo선택하기</h1>"
+    // item 요소
+    document.querySelector('.list  .item:nth-child(2)')
+            .innerHTML = "<a href='www.google.com'>구글</a>"
+
+    const foo = document.getElementById('foo') 
+    console.log(foo)  
+    
+    const items = document.querySelectorAll('.item')
+    console.log("item class:",items)
+
+    for ( let item of items){// 배열구조 하나씩 꺼집어내어 처리
+      console.log(item)
+    }
+    consoel.log("-- for")
+    for (let idx=0; idx<items.length; idx++)
+        console.log( items[i] )
+    
+  </script>
+</body>
+</html>
