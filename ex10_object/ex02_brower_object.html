@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>브라우저 객체(BOM: Browser Object Model)</title>
+</head>
+<body>
+
+  <h3>focus()/blur()</h3>
+  <div class="box2">
+    <input type="text" id="name"  placeholder="이름"><br>
+    <input type="text" id="email" placeholder="이메일"><br>
+  </div>
+  <hr>
+
+  <h3>BOM</h3>
+  <hr>
+
+  <div class="box1">
+    <button class="btn1">링크(href)</button>
+    <button class="btn2">새창(open)</button>
+    <button class="btn3">창닫기(close)</button>
+    <button class="btn4">setTimeOut()</button>
+    <button class="btn5">새로고침(reload)</button>
+    <button class="btn6">이전페이지/다음페이지 이동</button>
+  </div>
+  </div>
+
+
+
+  <script>
+    const my_href = document.querySelector('.btn1')
+    const my_open = document.querySelector('.btn2')
+    const my_close = document.querySelector('.btn3')
+    const my_setTimeOut = document.querySelector('.btn4')
+    const my_reload = document.querySelector('.btn5')
+    const my_go = document.querySelector('.btn6')
+
+    const name = document.querySelector('#name')
+    const email = document.querySelector('#email')
+
+    // 포커스 설정
+    name.focus()
+    name.addEventListener('keyup', (keyGubun)=>{
+      console.log('keyCode:'+keyGubun.keyCode) // 13 => Enter
+      
+      let maxLen = name.value.length
+      console.log("name length: ", maxLen)
+
+      if (keyGubun.keyCode == 13 || maxLen >= 7){
+        email.focus()
+      }
+    })
+    name.addEventListener('focus', ()=>{console.log('이름 입력해주세요.')})
+    name.addEventListener('blur',  ()=>{console.log('이름 입력 완료.')})
+
+    email.addEventListener('focus', ()=>{console.log('이메일 입력해주세요.')})
+    email.addEventListener('blur',  ()=>{console.log('이메일 입력 완료')})
+
+
+
+    //console.log(my_href) // DOM 해석(인식)
+    my_go.addEventListener('click',()=>{
+      location.href = 'first.html'
+    })
+
+    my_reload.addEventListener('click',()=>{
+      window.location.reload()
+    })
+
+    my_setTimeOut.addEventListener('click',()=>{
+      var count=100
+      setTimeout(function(){
+        count++
+        console.log(count)
+      }, 2000) //2초후 1회만 수행
+
+      console.log('1회만 수행하였습니다.')
+    })
+
+    my_close.addEventListener('click',()=>{
+      console.log('close')
+      window.close() // 현재 창을 닫기
+    })
+
+    my_open.addEventListener('click',()=>{
+      //const win = window.open('ex01_date.html')
+      const win = window.open(
+                'ex01_date.html', // URL(이동할 페이지)
+                "win1", // 새창 이름
+                "width=350, height=400, \
+                left=300, top=200, \
+                toolbars=yes, status=yes, location=yes  "      // 새창 옵션
+                )
+
+
+      win.focus() //열린 새창이 기존 창보다 뒤에 열리지 않도록 액티비티처리
+
+
+    })
+
+
+    my_href.addEventListener('click',function(){
+      // 객체.함수(), 객체.속성 => window.alert() -> alert()
+
+      let mySum = [1,2,3,4,5].reduce( (a,b)=> a+b) // 합계구하기
+
+      // window객체는 생략하면 묵시적으로 인식됨.
+      window.alert(`합의 결과값: ${mySum}`)
+      window.location.href = 'ex01_date.html' // 해당 페이지 이동
+      
+    })
+
+
+  </script>
+</body>
+</html>
+<!--
+window -> document, screen, location, history, navigator
+document - h1, body, div,.. (태그요소)
+
+window 메서드
+alert('메시지'), prompt('메시지','문자열'), confirm('문자열')
+setInterval(함수식, 밀리초), setTimneout(함수식, 밀리초)=> 한번수행
+open('url','창이름', '창옵션')
+-->
