@@ -31,7 +31,7 @@
   </div>
   <hr>
   <div class="nodes">
-    <ul class="numbers">
+    <ul class="numbers" >
       <li>1</li>
       <li>2</li>
       <li>3</li>
@@ -41,10 +41,13 @@
   </div>
 
 
+
   <script>
     const buttons = document.querySelectorAll('.buttons button')
     //const btnArrays = [...buttons]// 유사배열 -> 배열
     console.log(buttons)
+    const parentNumber = document.querySelector('.numbers')//부모노드
+
 
     //for(제어문), for(변수 of 배열) , 배열.forEach(함수식)
     for (let button of buttons){
@@ -59,19 +62,31 @@
         // 클릭한 버튼 구분하여 처리
         switch(btn_gubun){
           case "btn1":
-            alert('button1')
+            // 첫번째 자식노드 가져오기, 읽기전용, 
+            const first = parentNumber.firstElementChild
+            console.log(first)
+            alert(first.innerText)
             break;
           case "btn2":
-            alert('button2')
+            // 마지막 자식노드 가져오기
+            const last = parentNumber.lastElementChild
+            console.log(last)
+            alert(last.innerText)
             break;   
           case "btn3":
-            alert('button3')
+            // 다음 노드 가져오기
+            const next = parentNumber.firstElementChild.nextElementSibling
+            alert(next.innerText)
             break;   
           case "btn4":
-            alert('button4')
+            // 이전 노드 가져오기
+            const prev = parentNumber.lastElementChild.previousElementSibling
+            alert(prev.innerText)
             break;   
           case "btn5":
-            alert('button5')
+            // 현재노드의 부모노드 가져오기
+            const parentNode = parentNumber.firstElementChild.parentNode
+            console.log(parentNode)
           break;                              
         }
       })
