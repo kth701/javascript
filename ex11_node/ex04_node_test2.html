@@ -47,16 +47,15 @@
     const ul_list = document.querySelector('.list')
     const removeBtn = document.querySelector('#remove')
 
+ 
     // 1.처음 로딩된 시점의 list상태
-    const ul_list_item =  document.querySelectorAll('.list li')
-    console.log(ul_list_item)    
-
-    // 항List항목 표시하는 함수 호출
+    // List항목 표시하는 함수 호출
     itemsView() // 호출
 
     // List항목 표시
     function itemsView(){
 
+      /*
       ul_list_item.forEach((item)=>{
         console.log(item)
 
@@ -67,7 +66,22 @@
           item.remove(item)
         })
 
-      })
+      }) // end forEach
+      */
+
+      // 부모노드.children :자식노드 집합(배열)
+      console.log("item list len: ",ul_list.children.length)
+      for (let list_item of ul_list.children){
+        //console.log(list_item)
+        list_item.addEventListener('click', (item)=> {
+          //alert(list_item.textContent)
+          //console.log(list_item.textContent)
+          list_item.remove(item) // 클릭하면 현재 노드 삭제
+        })
+
+      }      
+
+
     /*
       for( let item of ul_list_item){
         console.log(item)
@@ -75,7 +89,11 @@
       */
     }
 
+
+    
+    // ----------------------- //
     // 삭제버튼 이벤트 핸들러
+    // ----------------------- //
     removeBtn.addEventListener('click',()=>{
       console.log('remove')
       // 부모노드.hasChildNodes() : 자식노드 존재여부 확인
@@ -113,7 +131,9 @@
 
     })
 
+    // ----------------------------- //
     // 추가버튼에 클릭 이벤트 핸들러
+    // ----------------------------- //
     addBtn.addEventListener('click',()=>{
       let value = name.value.trim()
       //console.log(value.length)
@@ -133,25 +153,36 @@
       // 첫째 요소 앞
       //ul_list.firstElementChild.before(liElement)
       // 두번째 요소 뒤
-      ul_list.firstElementChild.after(liElement)
+      //ul_list.firstElementChild.after(liElement)
 
       // 추가한 후 list항목 조회
-      /*
-      ul_list.forEach((item)=>{
-        console.log(item)
+      console.log("-- add ")
 
-        item.addEventListener('click', ()=>{
-          //alert(item.innerText)
-          console.log(item)
-          // 현재 클릭한 시점의 노드 삭제
-          item.remove(item)
+      // 부모노드.children :자식노드 집합(배열)
+      itemsView()
+      /*
+      console.log("item list len: ",ul_list.children.length)
+      for (let list_item of ul_list.children){
+        console.log(list_item)
+
+        list_item.addEventListener('click', (item)=> {
+          
+          //alert(list_item.textContent)
+          //console.log(list_item.textContent)
+
+          list_item.remove(item) // 클릭하면 현재 노드 삭제
         })
-      })
+
+      } // end for 
       */
+
+
+      console.log("-- add end")
     })
 
-
+    // ---------------------------------- //
     // input text에 키누름 이벤트 핸들러
+    // ---------------------------------- //
     name.addEventListener('keyup', (e)=>{
         //console.log(e.keyCode)
 
