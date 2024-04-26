@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>요소(node) 가져오기</title>
+  <style>
+    .nodes { width: 300px;}
+    .numbers {
+        display: flex; /* 행->열 */
+        border: 1px solid rgb(143, 116, 231);
+        margin: 0;padding: 0; /* ul요소 padding, margin 제거 */
+    }
+    .numbers > li {
+      flex: 1;
+      margin: 3px;padding: 5px;
+      border: 1px solid rgb(208, 99, 99);
+      list-style: none; /* li요소 기호문자 제거 */
+    }
+  </style>
+</head>
+<body>
+  <h3>Node read</h3>
+  <hr>
+  <div class="buttons">
+    <button id="btn1">첫번째 자식노드</button>
+    <button id="btn2">마지막 자식노드</button>
+    <button id="btn3">다음노드</button>
+    <button id="btn4">이전노드</button>
+    <button id="btn5">부모노드</button>
+  </div>
+  <hr>
+  <div class="nodes">
+    <ul class="numbers">
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+      <li>5</li>
+    </ul>
+  </div>
+
+
+  <script>
+    const buttons = document.querySelectorAll('.buttons button')
+    //const btnArrays = [...buttons]// 유사배열 -> 배열
+    console.log(buttons)
+
+    //for(제어문), for(변수 of 배열) , 배열.forEach(함수식)
+    for (let button of buttons){
+      //console.log(button)
+
+      // 버튼 클릭시 처리할 내용 연결(이벤트 핸들러)
+      button.addEventListener('click', (event)=>{
+        //console.log(event)
+        //console.log("-----")
+        //console.log( event.target.id )
+        let btn_gubun = event.target.id
+        // 클릭한 버튼 구분하여 처리
+        switch(btn_gubun){
+          case "btn1":
+            alert('button1')
+            break;
+          case "btn2":
+            alert('button2')
+            break;   
+          case "btn3":
+            alert('button3')
+            break;   
+          case "btn4":
+            alert('button4')
+            break;   
+          case "btn5":
+            alert('button5')
+          break;                              
+        }
+      })
+
+    }
+
+  </script>
+</body>
+</html>
