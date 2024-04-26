@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>노드 추가/삽입</title>
   <style>
+    .container{
+      display: flex;
+      align-items: center;
+    }
+    
     .list {
       border: 1px solid red;
       margin: 0;padding: 0;
@@ -14,19 +19,33 @@
       border: 1px solid rgb(71, 177, 163);
       padding: 5px;margin: 5px;
     }
+    .box1 {
+      display: d-flex ;
+      flex: 0 0 300px;
+    }
+
+    .prev_next {
+      flex: 2;
+      margin: 10px;
+      color:rgb(227, 103, 199)
+    }
   </style>
 </head>
 <body>
   <h3>부모노드에 자식요소 추가하기</h3>
   <hr>
-  <div class="form">
-    <div>
+  <div class="container">
+    <div class="box1">
       <label for="">항목 내용: 
         <input type="text" id="name" value="딸기" placeholder="과일명입력">
       </label>
+    </div>
+
+    <div>
       <button id="add">추가</button>
       <button id="remove">삭제</button>
     </div>
+    
     <div class="prev_next">
       <button id="prev">앞으로가기</button>
       <button id="next">뒤로가기</button>
@@ -42,6 +61,7 @@
       <li id="list_item1">사과</li>
       <li >수박</li>
     </ul>
+    
   </div>
 
 
@@ -57,6 +77,8 @@
     const prevNextBtn = document.querySelectorAll('.prev_next button')
     console.log(prevNextBtn)
 
+    //console.log(ul_list.nextElementSibling == null)
+    var keyWordString = ""
     // 입력값 초기화
     name.value = ""
     name.focus()
@@ -94,11 +116,20 @@
       })
 
       for (let list_item of ul_list.children){
-        //console.log(list_item)
-        list_item.addEventListener('click', (item)=> {
-          //alert(list_item.textContent)
-          //console.log(list_item.textContent)
-          list_item.remove(item) // 클릭하면 현재 노드 삭제
+        console.log(list_item)
+
+        list_item.addEventListener('click', (event)=> {
+          
+          keyWordString = list_item.textContent
+
+            //alert(list_item.textContent)
+            //console.log(list_item.textContent)
+            //list_item.remove() // 클릭하면 현재 노드 삭제
+
+            list_item.style.backgroundColor = "rgb(227, 103, 199)"
+            list_item.style.color = "black"
+
+
         })
 
       }    
@@ -227,16 +258,20 @@
               //console.log(item, name.value)
               let itemName = item.innerText
               // 이동할 항목내용과 list item 내용이 동일한 경우: 이동대상
-              if (itemName == name.value.trim()){
+              if (itemName == keyWordString ){//// name.value.trim()
                 console.log(item) // 이동할 요소
-                item.style.color = "red"
+                
   
                 if (e.target.id=="prev") { // 앞으로 가기 버튼
                   let prevItem = item.previousElementSibling
-                  prevItem.before(item)
+                  
+                    prevItem.before(item)
+                  
                 } else { // "next" 뒤로가기 버튼
                   let nextItem = item.nextElementSibling
-                  nextItem.after(item)
+                 
+                    nextItem.after(item)
+                  
                 }// inner if
               } // outer if
   
