@@ -20,6 +20,8 @@
   <div>
     <ul class="list">
       <li id="list_item1">사과</li>
+      <li >사과1</li>
+      <li >사과2</li>
     </ul>
   </div>
 
@@ -32,6 +34,31 @@
     //console.log(addBtn)
     const ul_list = document.querySelector('.list')
     const removeBtn = document.querySelector('#remove')
+
+    // 처음 로딩된 시점의 list상태
+    const ul_list_item =  document.querySelectorAll('.list li')
+    console.log(ul_list_item)    
+
+    // 항목에서 클릭하여 직접 삭제
+    itemsView() // 호출
+
+    // List항목 표시
+    function itemsView(){
+
+      ul_list_item.forEach((item)=>{
+        console.log(item)
+
+        item.addEventListener('click', ()=>{
+          alert(item.innerText)
+        })
+
+      })
+    /*
+      for( let item of ul_list_item){
+        console.log(item)
+      }
+      */
+    }
 
     // 삭제버튼 이벤트 핸들러
     removeBtn.addEventListener('click',()=>{
