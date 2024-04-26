@@ -20,20 +20,27 @@
   <h3>부모노드에 자식요소 추가하기</h3>
   <hr>
   <div class="form">
-    <label for="">항목 내용: 
-      <input type="text" id="name" value="딸기" placeholder="과일명입력">
-    </label>
-    <button id="add">추가</button>
-    <button id="remove">삭제</button>
+    <div>
+      <label for="">항목 내용: 
+        <input type="text" id="name" value="딸기" placeholder="과일명입력">
+      </label>
+      <button id="add">추가</button>
+      <button id="remove">삭제</button>
+    </div>
+    <div class="prev_next">
+      <button id="prev">앞으로가기</button>
+      <button id="next">뒤로가기</button>
+    </div>
+
   </div>
   <hr>
   <h3>과일List</h3>
   <div>
     <ul class="list">
+      <li id="list_item1">바나나</li>
+      <li >오렌지</li>
       <li id="list_item1">사과</li>
-      <li >사과1</li>
-      <li id="list_item1">사과</li>
-      <li >사과2</li>
+      <li >수박</li>
     </ul>
   </div>
 
@@ -47,7 +54,13 @@
     const ul_list = document.querySelector('.list')
     const removeBtn = document.querySelector('#remove')
 
- 
+    const prevNextBtn = document.querySelectorAll('.prev_next button')
+    console.log(prevNextBtn)
+
+    // 입력값 초기화
+    name.value = ""
+    name.focus()
+
     // 1.처음 로딩된 시점의 list상태
     // List항목 표시하는 함수 호출
     itemsView() // 호출
@@ -71,6 +84,15 @@
 
       // 부모노드.children :자식노드 집합(배열)
       console.log("item list len: ",ul_list.children.length)
+      const arr = [...ul_list.children]
+
+      console.log("유사배열구조: ",ul_list.children)
+      console.log("배열구조: ",arr)
+      
+      arr.forEach( (item, idx)=> {
+        console.log(item, idx)
+      })
+
       for (let list_item of ul_list.children){
         //console.log(list_item)
         list_item.addEventListener('click', (item)=> {
@@ -79,7 +101,7 @@
           list_item.remove(item) // 클릭하면 현재 노드 삭제
         })
 
-      }      
+      }    
 
 
     /*
@@ -176,7 +198,6 @@
       } // end for 
       */
 
-
       console.log("-- add end")
     })
 
@@ -190,7 +211,45 @@
             addBtn.focus()   // 버튼위치로 이동
     })
 
+    // ---------------------------------- //
+    // 앞으로 가기, 뒤로가기 버튼
+    // ---------------------------------- //
+    for ( let button of prevNextBtn){
+      //console.log(button)
+      button.addEventListener('click', (e)=>{
+        //alert(e.target.id)
 
+        const item_list = document.querySelectorAll('.list li')
+        const isZero = item_list.length
+        if ( isZero > 0 ){
+            // 키워드를 입력한 항목이 list항목에 있으면 가져오기
+            item_list.forEach((item) => {
+              //console.log(item, name.value)
+              let itemName = item.innerText
+              // 이동할 항목내용과 list item 내용이 동일한 경우: 이동대상
+              if (itemName == name.value.trim()){
+                console.log(item) // 이동할 요소
+                item.style.color = "red"
+  
+                if (e.target.id=="prev") { // 앞으로 가기 버튼
+                  let prevItem = item.previousElementSibling
+                  prevItem.before(item)
+                } else { // "next" 뒤로가기 버튼
+                  let nextItem = item.nextElementSibling
+                  nextItem.after(item)
+                }// inner if
+              } // outer if
+  
+            })// end forEach
+        } else {
+            alert('선택 항목이 없습니다.')
+        }
+  
+        itemsView()
+      }) // end buttun event
+    } // end for
+
+ 
 
   </script>
 
