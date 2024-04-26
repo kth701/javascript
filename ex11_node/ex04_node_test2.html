@@ -4,6 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>노드 추가/삽입</title>
+  <style>
+    .list {
+      border: 1px solid red;
+      margin: 0;padding: 0;
+      list-style: none;
+    }
+    .list li {
+      border: 1px solid rgb(71, 177, 163);
+      padding: 5px;margin: 5px;
+    }
+  </style>
 </head>
 <body>
   <h3>부모노드에 자식요소 추가하기</h3>
@@ -21,6 +32,7 @@
     <ul class="list">
       <li id="list_item1">사과</li>
       <li >사과1</li>
+      <li id="list_item1">사과</li>
       <li >사과2</li>
     </ul>
   </div>
@@ -35,11 +47,11 @@
     const ul_list = document.querySelector('.list')
     const removeBtn = document.querySelector('#remove')
 
-    // 처음 로딩된 시점의 list상태
+    // 1.처음 로딩된 시점의 list상태
     const ul_list_item =  document.querySelectorAll('.list li')
     console.log(ul_list_item)    
 
-    // 항목에서 클릭하여 직접 삭제
+    // 항List항목 표시하는 함수 호출
     itemsView() // 호출
 
     // List항목 표시
@@ -49,7 +61,10 @@
         console.log(item)
 
         item.addEventListener('click', ()=>{
-          alert(item.innerText)
+          //alert(item.innerText)
+          console.log(item)
+          // 현재 클릭한 시점의 노드 삭제
+          item.remove(item)
         })
 
       })
@@ -119,8 +134,23 @@
       //ul_list.firstElementChild.before(liElement)
       // 두번째 요소 뒤
       ul_list.firstElementChild.after(liElement)
-     
+
+      // 추가한 후 list항목 조회
+      /*
+      ul_list.forEach((item)=>{
+        console.log(item)
+
+        item.addEventListener('click', ()=>{
+          //alert(item.innerText)
+          console.log(item)
+          // 현재 클릭한 시점의 노드 삭제
+          item.remove(item)
+        })
+      })
+      */
     })
+
+
     // input text에 키누름 이벤트 핸들러
     name.addEventListener('keyup', (e)=>{
         //console.log(e.keyCode)
