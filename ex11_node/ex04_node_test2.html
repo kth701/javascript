@@ -67,6 +67,7 @@
 
 
   <script>
+
     const name = document.querySelector('#name')
     //console.log(name, name.value)
     const addBtn = document.querySelector('#add')
@@ -115,6 +116,8 @@
         console.log(item, idx)
       })
 
+
+
       for (let list_item of ul_list.children){
         console.log(list_item)
 
@@ -126,11 +129,14 @@
             //console.log(list_item.textContent)
             //list_item.remove() // 클릭하면 현재 노드 삭제
 
+            // 클릭하기전 스타일 초기화
+            style_init() 
+            // 클릭시 스타일 설정
             list_item.style.backgroundColor = "rgb(227, 103, 199)"
             list_item.style.color = "black"
 
-
         })
+        
 
       }    
 
@@ -143,6 +149,14 @@
     }
 
 
+    // 클릭시 스타일 초기화
+    function style_init(){
+      for (let list_item of ul_list.children){
+        console.log(list_item)
+        list_item.style.backgroundColor = ""
+        list_item.style.color = ""
+      }
+    }
     
     // ----------------------- //
     // 삭제버튼 이벤트 핸들러
@@ -191,6 +205,11 @@
       let value = name.value.trim()
       //console.log(value.length)
       //console.log(value.trim().length) // 왼쪽오른쪽 공백 제거
+
+      if (value =="" || !value) {
+        alert('추가할 항목 내용이 없습니다.')
+        return
+      }
       
       // li요소 생성
       const liElement = document.createElement('li')
@@ -200,12 +219,11 @@
 
       // 부모요소에 자식요소 추가하기: appendChild(), 마지막 위치에 추가
       ul_list.appendChild(liElement)
-      // 지정 위치에 요소 추가하기
+      // 1. 지정 위치에 요소 추가하기
       //ul_list.insertBefore(liElement, ul_list.firstElementChild) // 첫번째 위치에 추가
-
-      // 첫째 요소 앞
+      // 2. 첫째 요소 앞
       //ul_list.firstElementChild.before(liElement)
-      // 두번째 요소 뒤
+      // 3. 두번째 요소 뒤
       //ul_list.firstElementChild.after(liElement)
 
       // 추가한 후 list항목 조회
