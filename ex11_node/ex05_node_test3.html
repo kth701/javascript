@@ -26,14 +26,21 @@
         <div class="list_box">
           <ul class="list-group list">
             <!-- <li class="list-group-item d-flex justify-content-between align-items-center"> -->
-            <!-- <li class="list-group-item d-flex justify-content-between align-items-center">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
               A list item1
-              <span  class="btn-close" ></span>
+              <div>
+                <button type="button" class="btn btn-danger btn-sm mx-4">Edit</button>
+                <span  class="btn-close" ></span>
+              </div>
+
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center">
               A list item2
-              <span  class="btn-close" ></span>
-            </li>             -->
+              <div>
+                <button type="button" class="btn btn-danger btn-sm mx-4">Edit</button>
+                <span  class="btn-close" ></span>
+              </div>
+            </li>            
           
           </ul>
         </div>
@@ -59,9 +66,11 @@
       //list_item.forEach((data)=>console.log('data:',data))
 
       // li list항목 초기상태 표시
-      listView()
-      function listView() {
-        console.log("listView:",list_item)
+      listView_remove_event() // 삭제 이벤트 등록 처리
+      listView_edit_event() // 수정 이벤트 등록
+
+      function listView_remove_event() {
+        //console.log("listView:",list_item)
 
         // 초기 li 항목에 click이벤트 처리
         list_item.forEach((li)=>{
@@ -69,16 +78,54 @@
           // 부모노드.children =>자식노드 전체추출
           // 부모노드.children[index] => 특정 위치에 있는 자식노드추출
 
-          // li노드 자식인 span에 이벤트 등록
-          li.children[0].addEventListener('click', (e)=>{
+          // li노드 자식인 span에 삭제 이벤트 등록
+          li.children[0].children[1].addEventListener('click', (e)=>{
             //console.log(e.target.)
             console.log(li.innerHTML)
             li.remove() // li노드 삭제
           })
 
-        })
+        }) // end forEach
+      
 
       }// end listView()
+
+      function listView_edit_event(){
+        list_item = document.querySelectorAll('.list li')
+        list_item.forEach((li)=>{
+          li.children[0].children[0].addEventListener('click', (e)=>{
+
+            replaceFun(li)
+
+          })
+        })// forEach
+      }
+
+      function replaceFun(event_obj){
+
+        var isOk = prompt("교체할 객체 내용을 입력하세요", "")
+        var liElement
+        if (isOk) {
+          // 교체할 객체 생성해서 교체작업 처리
+          liElement = document.createElement('li') 
+          // li 요소 class 추가
+          liElement.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-center")
+          // li 요소 텍스트및 자식 요소 추가
+          liElement.innerHTML = isOk +" "+ 
+          '<div>'
+            +'<button type="button" class="btn btn-danger btn-sm mx-4">Edit</button>'
+            +'<span  class="btn-close" ></span>'
+          +'</div>'
+          console.log("replace => ", liElement)  
+
+          // 클릭 li요소를 생성한 li요소와 교체
+          event_obj.replaceWith(liElement)
+
+          listView_edit_event()
+          listView_remove_event()
+
+        }
+      }
 
       // 추가버튼
       addButton.addEventListener('click',()=>{
@@ -101,7 +148,10 @@
         liElement.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-center")
         // li 요소 텍스트및 자식 요소 추가
         liElement.innerHTML = inputValue +" "+ 
-                             '<span  class="btn-close" ></span>'
+        '<div>'
+          +'<button type="button" class="btn btn-danger btn-sm mx-4">Edit</button>'
+          +'<span  class="btn-close" ></span>'
+        +'</div>'
         //console.log("create li: ",liElement)
         //console.log("child cnt: ",list.childElementCount)
 
@@ -117,21 +167,27 @@
         itemContent.focus()
 
         // update관계로 다시 읽어오기
-
         list_item = document.querySelectorAll('.list li')
         var list_item2 = [...list_item]
         list_item2.forEach((li)=>{
           //console.log("=>",li)
-          li.children[0].addEventListener('click', (e)=>{
+
+          li.children[0].children[1].addEventListener('click', (e)=>{
             //console.log(e.target.)
             console.log(li.innerHTML)
             li.remove() // li노드 삭제`
           })
-        })
-      
+
+          li.children[0].children[0].addEventListener('click', (e)=>{
+
+            replaceFun(li)
+          
+          })  // Edit button click
+
+        })// forEach
+        
 
       })  //end  addButton
-
 
       // Enter키 처리
       itemContent.addEventListener('keyup', (e)=>{

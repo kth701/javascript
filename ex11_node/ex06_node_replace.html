@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=\, initial-scale=1.0">
+  <title>노드교체</title>
+  <style>
+    .container {
+      padding: 40px;margin: 20px;
+      border: 1px solid rgb(117, 117, 184);
+    }
+    .old-box, .new-box {
+      border: 1px dotted rgb(224, 109, 206);
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <button id="repBtn">교체하기</button>
+    <div class="old-box">교체 전 박스</div>
+  </div>
+
+  <script>
+    const repBtn = document.querySelector('#repBtn')
+    const oldBox = document.querySelector('.old-box')
+    console.log(repBtn, oldBox)
+
+    repBtn.addEventListener('click', ()=>{
+      var newBox = document.createElement('div')
+      newBox.textContent = '새로생성된 박스'
+      newBox.classList.add("new-box")
+
+      console.log("create div:",newBox)
+      oldBox.replaceWith(newBox)
+    })
+  </script>
+</body>
+</html>
