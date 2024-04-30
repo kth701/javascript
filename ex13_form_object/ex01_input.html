@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>form 객체</title>
+  <!-- 부트스트랩 스타일만 적용-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <style>
+    .box1 {
+      width: 300px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div  class="box1 form-floating">
+      <textarea id="myLongText" class="form-control  h-25"  cols="50" rows="3">오늘의 날씨</textarea>
+      <label for="myLongText">Comments</label>
+    </div>
+    <div class="box1 m-3" >
+      <input type="text" id="myText" class="form-control" value="Hello">
+    </div>
+    <hr>
+    <div class="message border border-secondary rounded p-2">
+
+    </div>
+    
+  </div>
+
+
+  <script>
+    
+    //const inputText2 = document.getElementById('myText')
+    const inputText1 = document.querySelector('#myText')
+    const messageText = document.querySelector('.message')
+
+    const myLongText = document.querySelector('#myLongText')
+    console.log(myLongText.value) 
+
+    // textArea 이벤트 'input'
+    //var str1 = "길순이\n동순이\n123"
+    //console.log("str1:", str1)
+    //var str2 = str1.split("\n")
+    //console.log(str2) //[0],[1],...
+    //var str3 = str2.join("<br>")
+    //console.log(str3)
+    console.log( str1.split("\n").join("<br>"))
+
+    myLongText.addEventListener('input', handleChange2)
+    function handleChange2(){
+      //console.log(myLongText.value)
+ 
+      var htmlStr = myLongText.value.split('\n').join('<br>')
+      messageText.innerHTML = htmlStr
+    }
+
+  
+    //------------------------------------------------ //
+    console.log(`input text value = ${inputText1.value} `)
+    messageText.innerHTML = inputText1.value
+
+    // text input 값변경 이벤트 'input'
+    inputText1.addEventListener('input',handleChange)
+    inputText1.addEventListener('keyup',(e)=>{
+      console.log(e.keyCode)
+
+      if (e.keyCode == 13) {
+        alert(inputText1.value)
+
+        inputText1.value = ""
+        inputText1.focus()
+      }
+    })
+
+    function handleChange(){
+      console.log('input text change')
+      messageText.innerHTML = inputText1.value
+    }
+    
+  </script>
+</body>
+</html>
