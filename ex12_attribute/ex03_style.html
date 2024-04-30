@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>스타일 변경하기</title>
+  <style>
+    .container {
+      width: 300px;
+      height: 100px;
+    }
+    .red { background-color: #ff2bc2;}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <p  id="info">Seoul Han River</p>
+  </div>
+
+
+  <script>
+    const info = document.querySelector('#info')
+    console.log(info)
+
+    info.style.color = 'red'
+    info.style.fontSize = '70px' // font-size : fontSize
+    info.style.fontWeight = '600'
+
+    const strokeColor = '#c52b84'
+    const strokeLineType = 'dotted'
+    const strokeLineWeight = '1px'
+    //info.style.border = '1px solid red'
+    info.style.border = `${strokeLineWeight} ${strokeLineType} ${strokeColor}`
+
+    // 스타일 확인
+    console.log(getComputedStyle(info).width)
+    console.log(getComputedStyle(info).color)
+    console.log(getComputedStyle(info).fontSize)
+
+  </script>
+</body>
+</html>

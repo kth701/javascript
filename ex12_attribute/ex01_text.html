@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>속성 다리기</title>
+</head>
+<body>
+  <ul id="links">
+    <li><a href="../ex11_node/ex03_node_test.html" target="_blank">1</a></li>
+    <li><a href="../ex11_node/ex04_node_test2.html">2</a></li>
+    <li><a href="../ex11_node/ex05_node_test3.html" target="_self">3</a></li>
+    <li><a href="../ex11_node/ex06_node_replace.html" target="_blank">4</a></li>
+  </ul>
+  <hr>
+  <h3>요소 속성 다루기</h3>
+  <hr>
+  <div>
+    <button id="change">속성 변경하기</button>
+    <a href="www.google.com" id="anchor">구글</a><br>
+    <img src="images/bg0.jpg" width="200" id="img">
+  </div>
+
+  <hr>
+  <h3>텍스트 요소 </h3>
+  <hr>
+  <h4>오늘의 날씨</h4>
+  <p id="weather-info">
+    흐림<span class="temperature">(23도)</span>
+  </p>
+
+
+
+  <script>
+    const aEL = document.querySelectorAll('#links a')
+    console.log(aEL)
+
+    // 배열.forEach(배열안에 있는 요소를 순차적으로 하나씩 불러와서 작업처리)
+    console.log("-- 반복처리 시작")
+    aEL.forEach( (data) => {
+      console.log(data)
+      if (data.hasAttribute('target') === false) {
+        alert('target속성 없을 경우=> '+ data.getAttribute('target'))
+      }
+      if (data.getAttribute('target') !== '_blank'){
+        alert('target속성값이 _blank 아닌 경우=> '+ data.getAttribute('target'))
+      }
+    })
+    console.log("-- 반복처리 끝")
+
+    // -------------- //
+    const changeEL = document.querySelector('#change')
+    const anchorEL = document.querySelector('#anchor')
+    const imgEL = document.querySelector('#img')
+    console.log(anchorEL, imgEL, changeEL)
+
+    console.log('a href',anchorEL.href )
+    console.log('a id', anchorEL.id)
+    console.log(imgEL.src)
+    console.log(imgEL.width)
+
+    changeEL.addEventListener('click',()=>{
+      anchorEL.href = "http://www.naver.com"
+      anchorEL.textContent = "네이버"
+
+      imgEL.setAttribute('src','images/bg1.jpg')
+      imgEL.setAttribute('width', '300')
+      console.log( imgEL.getAttribute('src') )
+
+      console.log('속성 여부 확인 : hasAttribue("속성")')
+      console.log(imgEL.hasAttribute('width'))
+      console.log(imgEL.hasAttribute('height'))
+ 
+    })
+
+
+
+    console.log("--------------------")
+    // ---------------------------------------------------------------- //
+    const weatherInfo = document.querySelector('#weather-info')
+    // 텍스트 요소 읽기,변경
+    // 노드.textContent=> 노드 내 텍스트(문자열)
+    console.log(weatherInfo.textContent)
+    // 노드.textContent = "문자열", 노드.innerHTML = "태그문자열"
+    weatherInfo.textContent = '기온은<string>-3도</string>가 예상'
+    weatherInfo.innerHTML = '기온은<string>-3도</string>가 예상'
+
+    // 자신을 포한 HTML 요소를 가져오거나 변경
+    // 노드.outerHTML = "문자열"
+    console.log(weatherInfo.outerHTML)
+    weatherInfo.outerHTML = "<div>Hello</div>"
+
+
+
+  </script>
+</body>
+</html>

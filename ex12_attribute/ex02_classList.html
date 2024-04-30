@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>클래스 속성 다루기</title>\
+  <style>
+    .box{
+      border: 1px solid rgb(120, 120, 216);
+      margin: 20px;padding: 20px;
+
+    }
+    .small_box {
+      border: 1px dotted rgb(88, 165, 87);
+      margin: 10px;padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h3>클래스속성 추가,삭제, 유무</h3>
+  <hr>
+  <div class="class_box">
+    <button id="add">클래스 추가</button>
+    <button id="remove">클래스 삭제</button>
+    <button id="toggle">클래스 토글</button>
+    <br>
+    부모박스
+    <div id="box1" class="red blue">자식박스1</div>
+    <div id="box2" class="blue red">자식박스2</div>
+  </div>
+
+  <script>
+    const addBtn = document.querySelector('#add')
+    const removeBtn = document.querySelector('#remove')
+    const toggleBtn = document.querySelector('#toggle')
+    //console.log(addBtn, removeBtn)
+    const buttons = document.querySelectorAll('.class_box button')
+    console.log(buttons)
+    buttons.forEach( (button) => {
+      //console.log(button.getAttribute('id')).
+
+      // 3개의 버튼에 대해 일괄적으로 이벤트 등록
+      button.addEventListener('click', ()=>{
+        //console.log( button.getAttribute('id') )
+
+        // gubun = add, remove, toggle
+        let gubun =  button.getAttribute('id')
+        if (gubun === 'add') {
+          addClassFun()
+        }else if (gubun === 'remove') {
+          removeClassFun()
+        } else {
+          toggleClassFun()
+        }
+      })
+    })// end forEach
+
+    // 기능별 함수 정의
+    // 함수 밖에 선언된 변수 전역변수(공용변수)
+    let c1 = document.querySelector('.class_box')
+    let c2 = document.querySelector('#box1')
+    let c3 = document.querySelector('#box2')
+    function addClassFun(){
+      console.log( 'add func')
+
+      c1.classList.add('box')
+      c2.classList.add('small_box')
+      c3.classList.add('small_box')
+    }
+    function removeClassFun(){
+      console.log( 'remove func')
+      c1.classList.remove('box')
+      c2.classList.remove('small_box')
+      c3.classList.remove('small_box')
+    }
+    function toggleClassFun(){
+      console.log( 'toggle func')
+      c1.classList.toggle('box')
+      c2.classList.toggle('small_box')
+      c3.classList.toggle('small_box')
+    }
+
+
+
+    /*
+    addBtn.addEventListener('click',()=> {
+      //console.log('add')
+      let c1 = document.querySelector('.class_box')
+      c1.classList.add('box')
+
+      document.querySelector('#box1').classList.add('small_box')
+      document.querySelector('#box2').classList.add('small_box')
+
+    })
+    removeBtn.addEventListener('click',()=> {
+      //console.log('remove')
+      let c1 = document.querySelector('.class_box')
+      c1.classList.remove('box')
+
+      document.querySelector('#box1').classList.remove('small_box')
+      document.querySelector('#box2').classList.remove('small_box')
+    })
+    toggleBtn.addEventListener('click',()=>{
+      let c1 = document.querySelector('.class_box')
+      c1.classList.toggle('box')
+
+      document.querySelector('#box1').classList.toggle('small_box')
+      document.querySelector('#box2').classList.toggle('small_box')      
+    })
+    */
+
+    // --------------- //
+    const classBox = document.querySelector('.class_box')
+    const redBox = document.querySelector('#box1')
+    const blueBox = document.querySelector('#box2')
+
+    console.log("class 속성값")
+    console.log(classBox.getAttribute('class'),redBox.getAttribute('class'),blueBox.getAttribute('class'))
+
+    console.log("class 속성 추가")
+    classBox.classList.add("blue","red")
+    redBox.classList.remove('blue','red')
+
+    console.log(blueBox.classList.contains('red'))
+    console.log(blueBox.classList.contains('cyan'))
+
+
+  </script>
+</body>
+</html>

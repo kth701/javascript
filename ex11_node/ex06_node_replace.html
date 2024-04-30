@@ -18,20 +18,33 @@
 <body>
   <div class="container">
     <button id="repBtn">교체하기</button>
+    <button id="copyBtn">복사하기</button>
     <div class="old-box">교체 전 박스</div>
   </div>
 
   <script>
     const repBtn = document.querySelector('#repBtn')
+    const copyBtn = document.querySelector('#copyBtn')
     const oldBox = document.querySelector('.old-box')
     console.log(repBtn, oldBox)
 
+
+    copyBtn.addEventListener('click',()=>{
+      //console.log('copy click')
+      var clonedBox = oldBox.cloneNode(true)
+      //console.log('clonedBox:', clonedBox)
+      document.querySelector('.container').appendChild(clonedBox)
+    })
+
+    // 교체하기버튼 이벤트 등록
     repBtn.addEventListener('click', ()=>{
       var newBox = document.createElement('div')
       newBox.textContent = '새로생성된 박스'
       newBox.classList.add("new-box")
 
       console.log("create div:",newBox)
+
+      // 객체 교체
       oldBox.replaceWith(newBox)
     })
   </script>
