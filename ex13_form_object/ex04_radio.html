@@ -25,7 +25,7 @@
         <option value="grape" selected>Grape</option>
       </select>
 
-      <select class="form-select" id="mySel2" >
+      <select class="form-select mt-2" id="mySel2" size="3" multiple >
       </select>
 
       <div class="alert alert-warning mt-3 log" >
@@ -59,9 +59,13 @@
   </form>
 
   <script>
+
+
+
     // mySel2
     const mySelect2 = document.querySelector('#mySel2')
-    console.log(mySelect2)
+    //console.log(mySelect2)
+
     option_str = ""
     for (let i=1; i<=31; i++){
       option_str += `<option value="${i}">${i}</option>`
@@ -69,8 +73,48 @@
     }
     //console.log(option_str)
     mySelect2.innerHTML = option_str
-    
-   
+
+    // 1. select 요소 이벤트 처리: 단일 선택일 경우
+    /*
+    mySelect2.addEventListener('change', (e)=>{
+      //console.log(mySelect2.value)
+
+      let value = `선택한 값은 ${mySelect2.value} 입니다.`
+      log.innerHTML = value
+    })
+    */
+    // 2. select 요소 이벤트 처리: 다중 선택일 경우
+    mySelect2.addEventListener('change', (e)=>{
+      // 여러개 선택 항목 체크
+      multiSelected()
+    })  
+
+    function multiSelected(){
+      /*
+      // 1. 확장 for문을 이용:
+      //    mySelect2.options배열 있는 option객체를 읽어와서 체크상태확인
+      let sel_str = ""
+      for (var option of mySelect2.options){  //console.log(option, option.value, option.selected) 
+        if (option.selected) {                //console.log("selected value:"+option.value)
+          sel_str += option.value+","
+        }// end if
+      }// end for
+      log.innerHTML = sel_str
+      */
+
+      // 2. 함수형 형식
+      //onsole.log("유사배열=>"+mySelect2.options)
+      //console.log("[...유사배열]=>배열로 전환:"+[...mySelect2.options])
+
+      var select_value = [...mySelect2.options]
+                        .filter(option => option.selected) // 선택된 option만 반환
+                        .map(option => option.value)
+      console.log(select_value)
+      log.innerHTML = select_value.join(",")
+
+
+
+    } 
 
 
     // ------------ mySel
@@ -82,6 +126,7 @@
     var value = `선택한 값은 ${mySelect.value} 입니다.`
     log.innerHTML = value
 
+
     // select 요소 이벤트 처리
     mySelect.addEventListener('change', (e)=>{
       console.log(mySelect.value)
@@ -91,6 +136,7 @@
     // ------------------ //
     const radioGroup1 = document.querySelector('form#radioForm')
 
+    console.log("form태그를 이용하여 radio객체 선택값 확인")
     console.log(radioGroup1.fruit.value)
     console.log(radioGroup1.drink.value)
 
