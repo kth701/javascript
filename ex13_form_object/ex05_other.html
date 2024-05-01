@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="container">
+    <div>
+      <label>RED<input    type="range"    id="red"    min="0" max="255" value="0" ></label><br>
+      <label>GREEN<input  type="range"    id="green"  min="0" max="255" value="0" ></label><br>
+      <label>BLUE<input   type="range"    id="blue"   min="0" max="255" value="0" ></label>
+    </div>
+    <hr>
+    <div>
+      <input type="color" id="myColor" value="#0000ff">
+    </div>
+    <div>
+      <input type="range" id="myRange" min="0" max="100" value="0" >
+    </div>
+
+    <div class="log"></div>
+  </div>
+
+  <script>
+    const log = document.querySelector(".log")
+
+    const red = document.querySelector("#red")
+    const green = document.querySelector("#green")
+    const blue = document.querySelector("#blue")
+    //console.log(red,green, blue)
+    var myRGB = ""
+
+    // 화살표함수 내에서는 외부함수 접근이 불가능
+    red.addEventListener('change', (e)=>{
+      console.log("red:"+e.target.value)
+    
+      rgbFun(e.target.value,0,0)
+    })
+    green.addEventListener('change', (e)=>{
+      console.log("green:"+e.target.value)
+      rgbFun(0,e.target.value,0)
+    })
+    blue.addEventListener('change', (e)=>{
+      console.log("blue:"+e.target.value)
+      rgbFun(0,0,e.target.value)
+    })
+    
+    //myRGB = `rgb(${redValue},${greenValue},${blueValue})`
+    //console.log("=>"+redValue)
+
+    function rgbFun(r,g,b){
+      console.log("rgbFun() : ",`rgb(${r},${g},${b})`)
+      bgcolor = `rgb(${r},${g},${b})`
+      log.style.backgroundColor =  `rgb(${r},${g},${b})` //bgcolor //"rgb("+r+","+g+"+","+b)" 
+    }
+
+
+
+
+    // Color
+    const myColor = document.querySelector("#myColor")
+    console.log(myColor.value)
+    log.innerHTML = myColor.value
+    log.style.backgroundColor = myColor.value
+
+    //myColor.value = '#00ff00'
+    log.style.backgroundColor = 'rgb(255,0,0)'
+
+    myColor.addEventListener('change',(e)=>{
+      log.style.backgroundColor = e.target.value
+      log.innerHTML = e.target.value
+    })
+
+
+    // ------------- Range
+    const myRange = document.querySelector("#myRange")
+    //console.log(myRange)
+    //console.log(myRange.value)
+
+    log.innerHTML = myRange.value
+    //myRange.value = 50 // 슬라이드 값 변경
+    //log.innerHTML = myRange.value
+    
+    myRange.addEventListener('change',handleChange)
+    function handleChange(e){
+      //console.log('value change...')
+      log.innerHTML = e.target.value
+    }
+
+
+  </script>
+</body>
+</html>
