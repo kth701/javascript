@@ -10,7 +10,7 @@
   <div class="container">
     <div class="check_box">
       <label>
-        <input type="checkbox" id="chA" class="c" value="바나나" checked>바나나
+        <input type="checkbox" id="chA" class="c" value="바나나" checked >바나나
       </label>
       <label>
         <input type="checkbox" id="chB" class="c" value="딸기" checked>딸기
@@ -45,7 +45,7 @@
     // checkBox 이벤트 -> change
     /*
     checkBoxA.addEventListener('change',(e) => {
-      console.log(e.target.checked)
+      console.log("A change=>",e.target.checked)
       if (e.target.checked == true){
         console.log("체크된 값은: "+e.target.value)
       }
@@ -68,14 +68,17 @@
       })
     })
     
+  
     function checkBoxAll(){
       console.log("-- 체크상태 확인 시작")
       console.log(arrayChk)
+
       let check_str = ""
+
       arrayChk.forEach( (chk) => {  //console.log(chk.value, chk.checked)
         if (chk.checked){           //console.log(chk.value, chk.checked)
           check_str += chk.value +","  
-        }
+        } 
       }) // end forEach()
       //console.log("당신이 선택한 항목은: "+check_str)
 
