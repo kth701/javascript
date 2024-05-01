@@ -30,31 +30,32 @@
     const green = document.querySelector("#green")
     const blue = document.querySelector("#blue")
     //console.log(red,green, blue)
-    var myRGB = ""
 
-    // 화살표함수 내에서는 외부함수 접근이 불가능
-    red.addEventListener('change', (e)=>{
-      console.log("red:"+e.target.value)
-    
-      rgbFun(e.target.value,0,0)
-    })
+    // 전역변수: 공용변수
+    var myRGB = ""
+    var redColor = greenColor = blueColor = "0"
+    red.addEventListener('change', (e)=>{// 화살표함수 내에서는 외부함수 접근이 불가능
+      console.log("red:"+e.target.value, e.target.id)
+      redColor = e.target.value
+      
+      colorFun(redColor)
+    })   
     green.addEventListener('change', (e)=>{
       console.log("green:"+e.target.value)
-      rgbFun(0,e.target.value,0)
+      greenColor = e.target.value
+      colorFun(redColor)
     })
     blue.addEventListener('change', (e)=>{
       console.log("blue:"+e.target.value)
-      rgbFun(0,0,e.target.value)
+      blueColor = e.target.value
+      colorFun(redColor)
     })
-    
-    //myRGB = `rgb(${redValue},${greenValue},${blueValue})`
-    //console.log("=>"+redValue)
 
-    function rgbFun(r,g,b){
-      console.log("rgbFun() : ",`rgb(${r},${g},${b})`)
-      bgcolor = `rgb(${r},${g},${b})`
-      log.style.backgroundColor =  `rgb(${r},${g},${b})` //bgcolor //"rgb("+r+","+g+"+","+b)" 
+    function colorFun(){
+      console.log("===> ",  `rgb(${redColor},${greenColor},${blueColor})`)
+      log.style.backgroundColor = `rgb(${redColor},${greenColor},${blueColor})`
     }
+
 
 
 
