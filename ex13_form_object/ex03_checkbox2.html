@@ -41,6 +41,26 @@
     // 1. checkBox 초기 상태 확인
     checkBoxArray()
 
+    // 2. 체크박스 변화가 생겼을 때 체크상태 확인하고 스타일 적용
+    arrayChk.forEach( (chk) => {
+      chk.addEventListener('change', (e)=>{
+        console.log( 'checkbox change object:', e.target.id, e.target.checked)
+
+        // 체크 변경후 체크박스 전체 호출 체크상태확인
+        checkBoxArray()
+        /*
+        switch(e.target.id){
+          case "chA" : 
+            // 체크 변경후 체크박스 전체 호출 체크상태확인
+            checkBoxArray() 
+            break
+          case "chB" : checkBoxArray(); break;
+          case "chC" : checkBoxArray(); break;
+        }
+        */
+      })
+    })
+
     // 배열에 있는 체크박스를 하나씩 읽어오는 함수
     function checkBoxArray(){
       console.log("-- 배열내용 읽기 시작")
