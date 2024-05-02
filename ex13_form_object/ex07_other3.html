@@ -76,17 +76,7 @@
     console.log([...chk_item].map((chk)=>chk))
     */
 
-    //allCheckedFun() // 함수호출(실행)
-
-    function allCheckedFun(){ // 전체 체크로 설정하는 함수 정의
-      console.log('== 배열.forEach()')
-      chk_item.forEach( (chk)=>{
-        chk.checked = true
-        console.log(chk,chk.checked)
-      })
-    }
-
-
+   
 
 
     
@@ -94,14 +84,21 @@
     // 전체 체크 이벤트 등록
     all_chk.addEventListener('change', (e)=>{
       console.log('change event : ', e.target.checked)
-      if (e.target.checked){ // 체크 설정 
-        // 전체 체크 해제
-        console.log('체크해제하기')
-      } else { // 체크 해지
-        // 전체 체크 설정
-        console.log('체크설정하기')
-      }
+      // 전체 체크 설정 여부에 따라 체크설정하는 함수 호출
+        allCheckedFun(e)
     })
+    // 전체 체크로 설정하는 함수 정의
+    function allCheckedFun(e){
+      console.log('== 배열.forEach():',  e.target.checked)
+      
+      chk_item.forEach( (chk)=>{
+        //console.log(e.target.checked)
+        if (e.target.checked) // 체크상태가 true설정되면 체크박스 전체 설정으로 전환
+          chk.checked = true
+        else // 체크상태가 false설정되면 체크박스 전체 설정해지으로 전환
+          chk.checked = false
+      })
+    } // allCheckedFun()
 
 
 
