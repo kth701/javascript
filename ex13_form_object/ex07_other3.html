@@ -18,15 +18,15 @@
       </div>
       <hr>
       <div class="form-check" id="box1">
-        <input class="form-check-input chk check11" type="checkbox" >
+        <input class="form-check-input chk check11" type="checkbox"  >
         <label class="form-check-label" for="check1">
           필수 선택1
         </label><br>
-        <input class="form-check-input chk check12" type="checkbox"  >
+        <input class="form-check-input chk check12" type="checkbox"   >
         <label class="form-check-label" for="check12">
           필수 선택2
         </label><br>
-        <input class="form-check-input chk check13" type="checkbox"  >
+        <input class="form-check-input chk check13" type="checkbox"   >
         <label class="form-check-label" for="check13">
           필수 선택3
         </label><br>
@@ -41,15 +41,15 @@
         <label class="form-check-label" for="check22">
            선택2
         </label><br>
-        <input class="form-check-input chk check23" type="checkbox" >
+        <input class="form-check-input chk check23" type="checkbox"  >
         <label class="form-check-label" for="check23">
            선택3
         </label><br>
       </div>  
       <hr>  
       <div class="buttons">
-        <button type="button" class="btn btn-primary"   id="cancel">취소</button>
-        <button type="button" class="btn btn-secondary" id="next">다음</button>
+        <button type="button" class="btn btn-outline-primary"   id="cancel">취소</button>
+        <button type="button" class="btn btn-outline-danger" disabled="disabled" id="next">다음</button>
       </div> 
 
     </div>
@@ -58,12 +58,14 @@
 
   <script>
     const all_chk = document.querySelector('#allChk')
+
     console.log(all_chk, all_chk.checked) // 체크상태확인
     //all_chk.checked = true // 체크 설정
     //console.log(all_chk, all_chk.checked)
     
     // 전체 체크박스 제외한 모든 체크박스 그룹핑(배열)
     const chk_item = document.querySelectorAll('.chk')
+    const all_chk_len = chk_item.length  // 전체체크박스 개수 파악
     //arr_chk = [...chk_item] //유사배열 -> 배열 : 스프레드연산=>[...유사배열]
     //console.log("유사배열상태:",chk_item) // .find(), .filter(), .map() 사용불가
     //console.log("배열상태:",arr_chk)      // .find(), .filter(), .map() 사용가능
@@ -76,28 +78,109 @@
     console.log([...chk_item].map((chk)=>chk))
     */
 
-   
+    const next = document.querySelector('#next')
+    console.log(next, next.getAttribute('disabled'))
+
+    // 필수 선태항목 체크
+    const chk1_box = document.querySelectorAll('#box1 .chk')
+    const chk1_box_len = chk1_box.length // 필수항목 전체개수 파악
+    //console.log(chk1_box, chk1_box_len)
+    const chk2_box = document.querySelectorAll('#box2 .chk')
+
+    // 1. 필수항목 체크박스 이벤트
+    chk1_box.forEach( (chk)=>{
+      //console.log(chk.className)
+      chk.addEventListener('change',(e)=>{
+        //console.log(e.target.className, e.target.checked)
+
+        // 필수항목 체크 개수 처리하는 함수 호출
+        chkCntFun()
+        // 필수항목 선택 전체 체크박스 개수 파악하는 함수 호출 
+        chkAllCntFun()
+      })
+    })// end forEach()
+
+    // 필수 항목 체크 개수 처리하는 함수 정의
+    function chkCntFun(){
+      let count = 0
+      chk1_box.forEach((chk) => {
+        if (chk.checked){
+          count++             //console.log(chk.className,chk.checked, count)
+        }// end if
+      }) // forEach()
+
+      console.log('필수항목 체크 개수:',count, chk1_box_len)
+      if (count >= chk1_box_len ) {
+        // 다음버튼 활성화
+        next.removeAttribute('disabled') //next.disabled = false
+      }
+      else { // 다음버튼 비활성화
+        next.setAttribute('disabled', true) //next.disabled = true
+      }
+    }
 
 
+    // 2. 선택항목 체크박스 이벤트
+    chk2_box.forEach( (chk)=>{
+      //console.log(chk.className)
+      chk.addEventListener('change',(e)=>{
+        // 필수항목 선택 전체체크박스 개수파악하는 함수 호출     
+        chkAllCntFun() 
+      })
+    })// end forEach()
+
+    // 체크박스 전체 개수 파악하는 함수 정의
+    function chkAllCntFun(){
+      let count = 0
+      // 필수항목 체크박스 개수
+      chk1_box.forEach((chk) => {
+        if (chk.checked){
+          count++             //console.log(chk.className,chk.checked, count)
+        }// end if
+      }) // forEach()
+      // 선택항목 체크박스 개수
+      chk2_box.forEach((chk) => {
+        if (chk.checked){
+          count++             //console.log(chk.className,chk.checked, count)
+        }// end if
+      }) // forEach()      
+      
+      console.log("total count:",count, all_chk_len) // 전체 개수
+      if ( count >= all_chk_len) { // 체크된 개수가 전체개수 보다 같거나 크면 처리
+        next.removeAttribute('disabled') //next.disabled = false
+        all_chk.checked = true
+      } else { // 다음버튼 비활성화
+        //next.setAttribute('disabled', true) //next.disabled = true
+        all_chk.checked = false
+      }
+
+    } // chkAllCntFun()
     
 
     // 전체 체크 이벤트 등록
     all_chk.addEventListener('change', (e)=>{
       console.log('change event : ', e.target.checked)
       // 전체 체크 설정 여부에 따라 체크설정하는 함수 호출
-        allCheckedFun(e)
+        allCheckedFun(e.target.checked) // 체크상태 값을 전달(true, false)
     })
+
     // 전체 체크로 설정하는 함수 정의
-    function allCheckedFun(e){
-      console.log('== 배열.forEach():',  e.target.checked)
-      
+    function allCheckedFun(isCheck){
+      console.log('== 배열.forEach():',  typeof(e))
+
       chk_item.forEach( (chk)=>{
         //console.log(e.target.checked)
-        if (e.target.checked) // 체크상태가 true설정되면 체크박스 전체 설정으로 전환
+        if (isCheck === true) // 체크상태가 true설정되면 체크박스 전체 설정으로 전환
           chk.checked = true
         else // 체크상태가 false설정되면 체크박스 전체 설정해지으로 전환
           chk.checked = false
-      })
+      }) // end forEach()
+
+      // 다음버튼 비활성화, 활성화 적용
+      if (isCheck === true)
+        next.removeAttribute('disabled')
+      else 
+        next.setAttribute('disabled',true) // setAttribute('disabled',false)=>작동안됨
     } // allCheckedFun()
 
 
