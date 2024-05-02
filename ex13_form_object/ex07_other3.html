@@ -18,41 +18,94 @@
       </div>
       <hr>
       <div class="form-check" id="box1">
-        <input class="form-check-input" type="checkbox"  id="check11">
+        <input class="form-check-input chk check11" type="checkbox" >
         <label class="form-check-label" for="check1">
           필수 선택1
         </label><br>
-        <input class="form-check-input" type="checkbox"  id="check12">
+        <input class="form-check-input chk check12" type="checkbox"  >
         <label class="form-check-label" for="check12">
           필수 선택2
         </label><br>
-        <input class="form-check-input" type="checkbox"  id="check13">
+        <input class="form-check-input chk check13" type="checkbox"  >
         <label class="form-check-label" for="check13">
           필수 선택3
         </label><br>
       </div>
       <hr>
       <div class="form-check" id="box2">
-        <input class="form-check-input" type="checkbox"  id="check21">
+        <input class="form-check-input chk check21" type="checkbox"  >
         <label class="form-check-label" for="check21">
            선택1
         </label><br>
-        <input class="form-check-input" type="checkbox"  id="check22">
+        <input class="form-check-input chk check22" type="checkbox" >
         <label class="form-check-label" for="check22">
            선택2
         </label><br>
-        <input class="form-check-input" type="checkbox"  id="check23">
+        <input class="form-check-input chk check23" type="checkbox" >
         <label class="form-check-label" for="check23">
            선택3
         </label><br>
       </div>  
       <hr>  
       <div class="buttons">
-        <button type="button" class="btn btn-primary" id="cancel">취소</button>
+        <button type="button" class="btn btn-primary"   id="cancel">취소</button>
         <button type="button" class="btn btn-secondary" id="next">다음</button>
       </div> 
 
     </div>
   </div>
+
+
+  <script>
+    const all_chk = document.querySelector('#allChk')
+    console.log(all_chk, all_chk.checked) // 체크상태확인
+    //all_chk.checked = true // 체크 설정
+    //console.log(all_chk, all_chk.checked)
+    
+    // 전체 체크박스 제외한 모든 체크박스 그룹핑(배열)
+    const chk_item = document.querySelectorAll('.chk')
+    //arr_chk = [...chk_item] //유사배열 -> 배열 : 스프레드연산=>[...유사배열]
+    //console.log("유사배열상태:",chk_item) // .find(), .filter(), .map() 사용불가
+    //console.log("배열상태:",arr_chk)      // .find(), .filter(), .map() 사용가능
+    /*
+    console.log('== for(변수of배열)')
+    for (let chk of chk_item) {
+      console.log(chk)
+    }
+    console.log('== 함수형 표현')
+    console.log([...chk_item].map((chk)=>chk))
+    */
+
+    //allCheckedFun() // 함수호출(실행)
+
+    function allCheckedFun(){ // 전체 체크로 설정하는 함수 정의
+      console.log('== 배열.forEach()')
+      chk_item.forEach( (chk)=>{
+        chk.checked = true
+        console.log(chk,chk.checked)
+      })
+    }
+
+
+
+
+    
+
+    // 전체 체크 이벤트 등록
+    all_chk.addEventListener('change', (e)=>{
+      console.log('change event : ', e.target.checked)
+      if (e.target.checked){ // 체크 설정 
+        // 전체 체크 해제
+        console.log('체크해제하기')
+      } else { // 체크 해지
+        // 전체 체크 설정
+        console.log('체크설정하기')
+      }
+    })
+
+
+
+
+  </script>
 </body>
 </html>
