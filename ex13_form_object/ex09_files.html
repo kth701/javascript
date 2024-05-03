@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>form요소 files</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <style>
+    .form_box {
+      width: 500px;
+    }
+  </style>
+</head>
+<body>
+  <div class="constainer">
+    <div class="form_box m-3 p-3">
+      <form >
+        <!-- 배열 구조 -->
+        <div class="mb-3">
+          <!-- <input type="file" name="myfiles" id="myfiles" multiple  class="form-control"> -->
+          <input type="file" name="myfiles" id="myfiles"  class="form-control">
+
+          <input type="file" name="myfiles2" accept=".png, .jpg"
+                 id="myfiles2"  class="form-control">                 
+        </div>
+        <div>
+          <button class="btn btn-success">전송</button>
+        </div>
+      </form>
+      <hr>
+      <div class="alert alert-secondary log" role="alert">
+        <img >
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const myfiles = document.querySelector('#myfiles')
+    //console.log(myfiles, myfiles.files)
+    //console.log("----")
+    //console.log(`선택한 파일이름: ${myfiles.name}`)
+    // 초기상태: 파일선택 하지않은 상태에서 undefined
+    //console.log(`선택한 파일이름: ${myfiles.files[0]}`)
+
+    // 파일 선택한 후
+    myfiles.addEventListener('change', (e)=>{
+
+      // form에 있는 file요소는 배열구조 : file요소.files속성
+      let files = e.target.files // e.target.속성나열=> myfiles의 의미
+
+      //console.log(files)
+      //console.log(files[0],files[1])
+      console.log('선택된 파일의 개수: '+files.length)
+
+      // 태그의 배열 추출=> for , for( 변수 of 배열), 배열.forEach()
+      for(let f of files) {  // 파일객체.files[index].name : 선택한 파일이름
+        console.log(f.name)
+      }
+    })
+    
+
+    // ---  파일 선택 이벤트
+    const myfiles2 = document.querySelector('#myfiles2')
+    //console.log(myfiles2)
+
+    const log = document.querySelector('.log')
+    //console.log(log)
+    const img = document.querySelector('.log img')
+    console.log(img)
+
+    myfiles2.addEventListener('input',(e) => {
+      //const target = e.target
+      const files = e.target.files[0]
+
+      // 변수선언 : const 변수 = 100
+      // 배열 : const obj1 = [10,20,30]; var obj2 = new Array()
+      // FileReader 인스턴스(객체) 생성
+      const reader = new FileReader()
+      
+      // 'load' 비동기 형식으로 읽기 작업완료 이벤트
+      reader.addEventListener('load',()=>{
+        //log.textContent = reader.result;
+        img.src = reader.result
+      })
+
+      // 선택한 파일을 읽기객체 인자로 전달
+      // reader.readAsText(files) 
+
+      // MIME타입 포맷 형식
+      reader.readAsDataURL(files)
+
+      
+    })
+
+  </script>
+</body>
+</html>
