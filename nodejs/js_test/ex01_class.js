@@ -29,6 +29,7 @@ var Picture2 = {
     console.log("이름: "+name+",나이:"+age)
   }
 }
+console.log('--- 리터럴 방식 객체만들기')
 console.log(Picture2.name)
 console.log(Picture2.age)
 Picture2.info()
@@ -66,12 +67,12 @@ Person.prototype.getInfo = function() {
   console.log(`이름: ${this.userName}, 나이:${this.age},몸무게:${this.weight}`)
 }
 
-var jang = new Person("강감찬", 180,80)
-console.log(jang)
-jang.getInfo()
+// var jang = new Person("강감찬", 180,80)
+// console.log(jang)
+// jang.getInfo()
 
-var lee = new Person("이순신", 190,90)
-console.log(lee)
-lee.getInfo()
+// var lee = new Person("이순신", 190,90)
+// console.log(lee)
+// lee.getInfo()
 
 

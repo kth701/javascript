@@ -8,11 +8,18 @@ class MyClass {
   }
 }
 
+console.log('1.-- 클래스 정의하여 객체 생성하기')0
 const obj1 = new MyClass()
-console.log(obj1)
+const obj2 = new MyClass()
+const obj3 = new MyClass()
+console.log(obj1,obj2, obj3)
+
+
 
 console.log(obj1.name)
 obj1.myNamePrn()
+
+console.log("2. -----")
 
 class Student {
 
