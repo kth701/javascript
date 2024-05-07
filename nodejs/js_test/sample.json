@@ -1,0 +1,15 @@
+{
+  "name": "A학교",
+  "classes": [
+    {
+      "student": 40,
+      "grade": 4,
+      "name": "C반"
+    },
+    {
+      "student": 20,
+      "grade": 2,
+      "name": "B반"
+    }
+  ]
+}
