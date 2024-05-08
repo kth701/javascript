@@ -45,8 +45,10 @@
   <!-- <script  src="ex07_promise.js"  ></script> -->
   <!-- <script  src="ex07_promise02.js"  ></script> -->
   <!-- <script  src="ex09_fetch.js"  ></script> -->
+  <script  src="ex10_error.js"  ></script
 
   <script>
+    
     const data = document.querySelector('#data')
     const btnSave = document.querySelector('.btnSave')
     const btnRead = document.querySelector('.btnRead')
@@ -108,6 +110,14 @@
 
       const jsonData = convertCookieToObject(document.cookie)
       console.log("jsonData result =>", jsonData)
+      //console.info("jsonData result =>", jsonData)
+      //console.warn("jsonData result =>", jsonData)
+      //console.error("jsonData result =>", jsonData)
+      console.log('-- .dir()')
+      console.dir(jsonData)
+      console.log('-- .table()')
+      console.table(jsonData)
+      console.dir(document.body)
 
       document.querySelector('#log').innerText = 
                                     JSON.stringify(jsonData,null,'  ')
