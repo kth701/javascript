@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+  <script src="js/ex01_02.js"></script>
+  <script>
+    $(function(){
+      //$('.box2 a[target]').css('color','#f00')
+      //$('.box2 a[href^=https]').css('color','#f00')
+      //$('.box2 a[href$=net]').css('color','#f00')
+      //$('#member_f :text').css('color','#f00')
+      //$('input[type=text]').css('color','#f00')
+      $('#member_f :password').css('background-color','#00f')
+
+    })
+  </script>
+</head>
+<body>
+  <div class="box2">
+    <ul>
+      <li><a href="http://tjoeun.atosoft.kr/" target="_blank">더조은</a></li>
+      <li><a href="https://www.naver.com">네이버</a></li>
+      <li><a href="http://www.google.com">구글</a></li>
+      <li><a href="http://www.daum.net">다음</a></li>
+    </ul>
+    <form action="#" method="get" id="member_f">
+      <div>
+        <label for="user_id">아이디</label>
+        <input type="text" name="user_id" id="user_id">
+      </div>
+
+      <div>
+        <label for="user_pw">비밀번호</label>
+        <input type="password" name="user_pw" id="user_pw">        
+      </div>
+    </form>
+  </div>
+
+  <hr>
+  <div class="box">
+    <h3>탐색 선택자</h3>
+    <ul id="menu">
+      <li>내용-1</li>
+      <li id="item">내용-2</li>
+      <li>내용-3</li>
+      <li>내용-4</li>
+    </ul>
+    <ul id="menu2">
+      <li>내용-1</li>
+      <li>내용-2</li>
+      <li>내용-3</li>
+      <li>내용-4</li>
+    </ul>
+  </div>
+</body>
+</html>
