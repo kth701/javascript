@@ -20,7 +20,6 @@ const getData = async ()=>{
       for (let key in item ){
         //console.log(item.key)
           
-        
         if (typeof item[key] === 'object'){ // value값이 object이면 처리
           console.log(`${key}값은 data가 아닌 객체입니다.`)
 
@@ -34,14 +33,14 @@ const getData = async ()=>{
                 console.log(`${key2}:${key3}=>${item3[key3]}`) 
             }
 
-          }// end for
+          }// inner for 
 
 
         } else { //  value가 데이터이면
           console.log(`${key}=>${item[key]}`) //  item.key == item[key]
-        }
+        } // end if
 
-      }
+      } // outer for
 
     });
   } catch(e){

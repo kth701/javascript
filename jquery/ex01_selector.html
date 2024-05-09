@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jQuery 선택자</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script>
+    // DOM객체가 정상적으로 로딩이되면 처리
+    //$(document).ready(function(){}) 
+    $(function(){
+      console.log('jquery ok...')
+
+      // 태그 선택자
+      $('h1').css('color', 'red')
+      $('#title').css({
+        // '스타일시트에사 사용하는 속성이름':'속성값'
+        //'border': '1px solid blue',
+        //'background-color': '#ff0'
+        
+        // js 스타일 속성이름
+        border : '1px solid blue',
+        backgroundColor : '#ff0'
+      })
+      $('.ti')
+        .css("background-color", "#0ff")
+        .css("border", "2px dashed #f00")
+
+
+      $('h2, h3').css('font-size','24px') 
+      $('.box1 h1').css({
+        'padding':'10px',
+        'border': '1px solid gray'
+      })
+
+      // 자식 요소=> '>'
+      //$('.box2 > h1').css('color','red')
+      //$('.box2').children('h1').css('color','blue')
+      //const el = $('.box2')
+      //el.children('h1').css('color','blue')
+      //el.find('> h1').css('color','blue')
+      //el.children().css('border','1px solid gray')
+
+      // 동위 선택자(형제요소선택자) : '+'
+      $('.box2 > .txt+p').css('color','green')
+      var style_1 = {
+        'background-color':'#0ff',
+        'border':'2px solid #f00'
+      }
+      //$('.txt').next().next().next().css(style_1)
+      //$('.txt').prev().css(style_1)
+      //$('.txt').nextAll().css(style_1) // 선택요소 이후에 있는 형제노드
+      //$('.txt').prevAll().css(style_1) // 선택요소 이전
+      //$('.txt').siblings().css(style_1) // 전체형제
+
+      // 상위요소 선택자
+      //$('#sec').parents('div').css(style_1)
+      //$('#sec').parents().css(style_1)
+      $('#sec > h1').closest('div').css(style_1) // 가장 가까운 상위요소
+
+ 
+    })// $()
+    
+  </script>
+</head>
+<body>
+  <div class="box2">
+    <h1>인접 선택자</h1>
+    <p class="txt">내용1</p>
+    <p>내용2</p>
+    <div id="sec">
+      <h1>자식 요소</h1>
+      <p>내용</p>
+    </div>
+    <p>내용3</p>
+  </div>
+  <hr>
+  <div class="box1">
+    <h1>제이쿼리</h1>
+    <h2 id="title">선택자</h2>
+    <h3 class="ti">직접선택자</h3>
+    <h3 >인접선택자</h3>
+  </div>
+
+</body>
+</html>
