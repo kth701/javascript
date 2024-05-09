@@ -38,4 +38,23 @@ function generateError(){
     console.log('에러 여부 관계없이 무조건 수행')
   }
 }
-setInterval(generateError, 1000);// 1.5초 단위로 generateError()함수 반복호출
+//setInterval(generateError, 1000);// 1.5초 단위로 generateError()함수 반복호출
+
+/*
+에러종류
+RangeError :값이허용 범위 내에 없음
+ReferenceError: 선언되지 않은 변수를 호출
+SyntaxError: 언어 구문 부정확
+TypeError: 데이터 타입 부정확
+URIError: URI 부정확
+*/
+
+try {
+  // 1. SyntaxError
+  // let num null 
+
+  // 2. ReferenceError
+  console.log(b) 
+} catch (error) {
+  console.log(error)
+}

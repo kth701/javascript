@@ -45,4 +45,4 @@ async function image_load(){
   document.querySelector('#log').appendChild(image)
 
 }
-image_load()
+//image_load()

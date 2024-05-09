@@ -1,11 +1,36 @@
-Irure aliquip qui nisi exercitation reprehenderit anim ullamco irure. Aute voluptate quis aute aliqua laborum ullamco consectetur nulla. Proident incididunt laborum fugiat veniam minim nostrud nulla id sit labore enim.
+1. VS code열기
+2. View - Command palette - Tasks: Configure task 선택
+3. 'Create tasks.json file from templat'선택
+4. Others선택
+5. 기존에 있는 코드 삭제 후 코드 붙여 넣기
+6. 저장
 
-Eiusmod excepteur quis nulla velit incididunt velit. Est pariatur occaecat est consequat. Dolor eu irure enim Lorem deserunt non duis et consectetur cillum. Aliqua voluptate elit esse aute non labore anim dolor occaecat. Amet velit proident voluptate deserunt amet commodo fugiat non enim est Lorem nulla.
-
-Proident do reprehenderit irure labore cillum nisi aute amet sit amet nostrud sint Lorem adipisicing. Dolor reprehenderit dolor ut ut elit fugiat. Cupidatat fugiat quis deserunt fugiat tempor. Culpa cupidatat nostrud in reprehenderit consequat.
-
-Velit ut commodo voluptate ex velit cupidatat id et esse ad proident. Eu ad do eu dolore dolor qui. Fugiat qui veniam sit proident.
-
-Do magna consectetur laboris esse mollit do quis reprehenderit esse velit aute elit occaecat. Commodo commodo sit laborum adipisicing exercitation occaecat excepteur voluptate magna tempor reprehenderit. Sunt deserunt occaecat qui consectetur proident aute enim elit aute adipisicing sit sunt ad. Consequat aute pariatur culpa occaecat nulla est pariatur incididunt id irure. Tempor sunt voluptate in enim dolor eiusmod irure elit adipisicing sit. Nostrud exercitation duis in proident est reprehenderit quis elit.
-
-Qui magna do occaecat veniam qui duis incididunt nulla excepteur sit et esse. Tempor non velit tempor cupidatat mollit laboris do sint officia et ipsum deserunt qui culpa. Ex aliquip excepteur consectetur occaecat nisi laboris dolore consectetur. Cupidatat ullamco sint non labore minim consequat eu exercitation enim consequat ut voluptate proident.
+/------ tasks.json 파일 ------ /
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "echo",
+      "type": "shell",
+      "command": "python",
+      "args": [
+        "${file}"
+      ],
+      "presentation":{
+        "reveal": "always",
+        "panel": "new",
+      },
+      "options": {
+        "env":{
+          "PYTHONIOENCODING":"UTF-8"
+        }
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    }
+  ]
+}
