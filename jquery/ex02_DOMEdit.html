@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <style>
+    .box1 {
+      width: 500px;
+    }
+    .box1 > div {
+      border: 1px solid green;
+      margin: 10px;padding: 10px;
+    }
+  </style>
+  <script>
+    $(function(){
+      // 형제노드 기준: 특정요소 앞,뒤 요소추가
+      //$('.box1 div').eq(1).after("<div>After()</div>")
+      //$("<div>After()</div>").insertAfter('.box1 div:eq(1)')
+
+      //$('.box1 div').eq(1).before("<div>Before()</div>")
+      //$("<div>Before()</div>").insertBefore('.box1 div:eq(1)')
+
+      //$('.box1').append("<div>append()</div>")
+      //$('.box1').prepend("<div>prepend()</div>")
+
+      //$('.box1').remove() // 요소 삭제
+      $('.box1').empty() // 하위 요소 삭제
+    })
+  </script>
+</head>
+<body>
+  <div class="box1">
+    <div>내용1</div>
+    <div>내용2</div>
+    <div>내용3</div>
+  </div>
+</body>
+</html>
