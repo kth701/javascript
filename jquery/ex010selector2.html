@@ -6,37 +6,59 @@
   <title>Document</title>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
-  <script src="js/ex01_02.js"></script>
+  <!-- <script src="js/ex01_02.js"></script> -->
+  <!-- <script src="js/ex01_03.js"></script> -->
   <script>
-    $(function(){
-      //$('.box2 a[target]').css('color','#f00')
-      //$('.box2 a[href^=https]').css('color','#f00')
-      //$('.box2 a[href$=net]').css('color','#f00')
-      //$('#member_f :text').css('color','#f00')
-      //$('input[type=text]').css('color','#f00')
-      //$('#member_f :password').css('background-color','#00f')
 
-      $('.box3 p:hidden').css({
-        'display': 'block',
-        'background':'#ff0'
-      })
-      var z1 = $('.zone1 :selected').val() //x.value(e.target.value)
-      console.log('선택된 항목:',z1)
 
-      var z2 = $('.zone2 :checked').val() //x.value(e.target.value)
-      console.log('체크된 항목:',z2)
+    $(function(){ 
+      // 요소 중 '내용1' 텍스트를 포함하는 요소
+      //$('.inner_1 p:contains(내용1)').css('background-color','#ff0')
+      // 선택한 하위요소의 텍스트와 태그 노드
+      //$('.inner_1').contents().css('background-color','#ff0')
+      // 선택한 요소중 특정요소를 포함하는 요소
+      //$('.inner_1 p:has(strong)').css('background-color','#ff0')
+      // 선택한 요소중 특정요소를 제외
+      //$('.inner_2 p').not(':first').css('background-color','#ff0')
+      //$('.inner_2 p').not(':nth-child(2)').css('background-color','#ff0')
+      // :nth-child(위치), .eq(index번호)
+      //$('.inner_2 p').eq(2).css('background-color','#ff0')
+      // 인덱스를 선택하기 전의 선택자 적용
+      $('.inner_2 p').eq(2).end().css('background-color','#ff0')
 
-      var z3 = $('.zone3 :checked').val() //x.value(e.target.value)
-      console.log('radio checked 항목:',z3)
+      // find(): 수직방향(하위요소), filter(): 형제선택자 (수평방향)
+      //$('.inner_1 .txt1').css('border', '1px solid red')
+      var inner_1 =  $('.inner_1')
+      inner_1.find('.txt1').css('border', '1px solid red')
 
-      $('#course').on('change',function(){
-        let val = $('#course option:selected').val()
-        console.log(val)
-      })
+      // 1.형제 노드 탐색 => $('.inner_2 p:nth-child(2)').css('color', 'red')
+      //var inner_2 = $('.inner_2 p')
+      //inner_2.filter(':nth-child(2)').css('color', 'red')
+      
+      // 2.특정조건에 부합되는 요소만 스타일 적용
+      inner_2.filter( function(idx, obj) {
+        console.log(idx, obj)
+        return idx%2 == 0 // true인 객체만 반환
+      }).css('color','green')
+      
+
+
+
     })
   </script>
 </head>
 <body>
+  <div class="box4">
+    <section class="inner_1">
+      <p class="txt1"><span>내용1</span></p>
+      <p class="txt2"><strong class="txt1">내용2</strong></p>
+      <p class="txt3"><span>내용3</span></p>
+    </section>
+    <section class="inner_2">
+      <p><span>내용4</span></p>
+      <p><span>내용5</span></p>
+      <p><span>내용6</span></p>
+    </section>
   <div class="box3">
     <p>내용1</p>
     <p style="display:none">내용2</p>
