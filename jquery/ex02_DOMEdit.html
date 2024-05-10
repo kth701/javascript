@@ -13,6 +13,34 @@
       border: 1px solid green;
       margin: 10px;padding: 10px;
     }
+
+
+    .slide-show, .container {
+      width: 200px;height: 100px;
+      border: 3px solid rgb(196, 88, 192);
+
+      margin-right: auto;margin-left: auto;
+    }
+    
+    .container {
+      position: relative;
+      border: 5px solid rgb(209, 119, 16);
+
+      overflow: hidden;
+    }
+    .slide-show {
+      position: absolute; /*상위요소가 좌표의 원점*/
+      left:-300px;
+      width: 200px;height: 100px;
+      display: flex;
+    }
+    .slide{
+      /*width: 200px; */
+      height: 100px;
+      flex: 0 0 200px;
+      background-color: bisque;
+    }
+   
   </style>
   <script>
     $(function(){
@@ -40,6 +68,14 @@
   </script>
 </head>
 <body>
+  <div class="container">
+    <div class="slide-show">
+      <div class="slide">이미지-1</div>
+      <div class="slide">이미지-2</div>
+      <div class="slide">이미지-3</div>
+    </div>
+  </div>
+  <hr>
   <div class="box1">
     <div>내용1</div>
     <div>내용2</div>
