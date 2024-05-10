@@ -9,7 +9,7 @@
     .box1 {
       width: 500px;
     }
-    .box1 > div {
+    .box1 > div, .box2 > div {
       border: 1px solid green;
       margin: 10px;padding: 10px;
     }
@@ -27,7 +27,15 @@
       //$('.box1').prepend("<div>prepend()</div>")
 
       //$('.box1').remove() // 요소 삭제
-      $('.box1').empty() // 하위 요소 삭제
+      //$('.box1').empty() // 하위 요소 삭제
+
+      var copyObj = $('.box1').children().clone()
+      $('.box2').append(copyObj)
+
+      // 현재요소.replaceWith(새요소)
+      $('.box1 div:eq(0)').replaceWith('<div><h3>replace method</h3></div>')
+      // 새요소.replaceAll(현재요소)
+      $('<p>replaceAll</p>').replaceAll('.box2 div')
     })
   </script>
 </head>
@@ -37,5 +45,6 @@
     <div>내용2</div>
     <div>내용3</div>
   </div>
+  <div class="box2"></div>
 </body>
 </html>
