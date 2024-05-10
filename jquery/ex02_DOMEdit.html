@@ -18,26 +18,21 @@
     .slide-show, .container {
       width: 200px;height: 100px;
       border: 3px solid rgb(196, 88, 192);
-
       margin-right: auto;margin-left: auto;
     }
-    
     .container {
       position: relative;
       border: 5px solid rgb(209, 119, 16);
-
-      overflow: hidden;
+      /*overflow: hidden;*/
     }
     .slide-show {
       position: absolute; /*상위요소가 좌표의 원점*/
-      left:-300px;
-      width: 200px;height: 100px;
-      display: flex;
+      left:0px;
+      width: 1000px;height: 100px;
     }
     .slide{
-      /*width: 200px; */
-      height: 100px;
-      flex: 0 0 200px;
+      float: left;
+      width: 200px; height: 100px;
       background-color: bisque;
     }
    
