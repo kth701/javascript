@@ -32,7 +32,7 @@
       inner_1.find('.txt1').css('border', '1px solid red')
 
       // 1.형제 노드 탐색 => $('.inner_2 p:nth-child(2)').css('color', 'red')
-      //var inner_2 = $('.inner_2 p')
+      var inner_2 = $('.inner_2 p')
       //inner_2.filter(':nth-child(2)').css('color', 'red')
       
       // 2.특정조건에 부합되는 요소만 스타일 적용
@@ -40,25 +40,90 @@
         console.log(idx, obj)
         return idx%2 == 0 // true인 객체만 반환
       }).css('color','green')
+
+      // 배열.map()  : x -> x , 배열.filter() : x -> n
       
+      var rs1 = $('.inner_2 p').eq(2).is(":visible")
+      console.log(':visible=>',rs1)
+      var rs2 = $('.inner_2 p').eq(3).is(":visible")
+      console.log(':visible=>',rs2)
 
+      var rs3 = $('#chk1').is(":checked")
+      console.log(':checked=>',rs3)
+      var rs4 = $('#chk2').is(":checked")
+      console.log(':checked=>',rs4)
 
+      var name = $('.name').html()
+      console.log(name)
+      var age = $('.age').text()
+      console.log(age)
+      $('.name').html('<i>홍길동</i>') // .innerHTML = ''
+      $('.age').text('<i>10</i>')
+
+      //xxx.getAttribute('class'),xxx.getAttribute('class','b')
+      var attr = $('.name').attr('class') // 속성값 읽기
+      console.log(attr)
+      $('.name').attr('id','name') // 속성값 설정
+      $('.name').removeAttr('my') // 특정 속성 제거
+
+      var imgSrc = $('.box5 img').attr('src') 
+      console.log(imgSrc)
+      // "images/math_img_1.jpg"
+      // "~1.jpg"=>"~2.jpg"
+
+      $('.box5 img').attr({
+        'width': 150,
+        'src': imgSrc.replace("1.jpg", "2.jpg"),
+        'alt': '보'
+      }).removeAttr('border')
+      
+      // addClass(), removeClass(), toggleClass(), hasClass()
+      $('.box6 p:nth-child(1)').addClass('add')
+      $('.box6 p:nth-child(2)').removeClass('block')
+      var is_has1 = $('.box6 p:nth-child(1)').hasClass('add')
+      var is_has2 = $('.box6 p:nth-child(2)').hasClass('block')
+      console.log(is_has1, is_has2)
+      $('.box6 p:nth-child(3)').toggleClass('to')
+      $('.box6 p:nth-child(4)').toggleClass('to')
 
     })
   </script>
 </head>
 <body>
+  <div class="box6">
+    <p>1</p>
+    <p class="block">2</p>
+    
+    <p class="to">3</p>
+    <p>4</p>
+  </div>
+
+
+  <div class="box5">
+    <p class="name" my="as">홍길동</p>
+    <p class="age">10</p>
+    <p><img src="images/math_img_1.jpg" width="200" alt="가위" border="2"></p>
+  </div>
   <div class="box4">
     <section class="inner_1">
       <p class="txt1"><span>내용1</span></p>
-      <p class="txt2"><strong class="txt1">내용2</strong></p>
+      <p class="txt2"><strong class="txt1" >내용2</strong></p>
       <p class="txt3"><span>내용3</span></p>
+      <p class="txt3" style="display:none"><span>내용3-1</span></p>
+      <p>
+        <input type="checkbox" name="chk1" id="chk1" checked>
+        <label for="chk1">체크1</label>
+
+        <input type="checkbox" name="chk2" id="chk2" >
+        <label for="chk2">체크2</label>
+      </p>
     </section>
     <section class="inner_2">
       <p><span>내용4</span></p>
       <p><span>내용5</span></p>
       <p><span>내용6</span></p>
     </section>
+  </div>
   <div class="box3">
     <p>내용1</p>
     <p style="display:none">내용2</p>
