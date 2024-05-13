@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script>
+    $(function(){
+      console.log('jquery ok...')
+      
+      // 1.
+      /* 이벤트종류함수()호출
+      $('.btn1').click(function(){
+        console.log('btn1 click')
+      })
+      */
+
+      // 3.
+      /*
+      $('.btn1').on({
+        'click': function(){
+          console.log('btn1 click....')
+        }
+      })
+      */
+      // javascript event
+      /*
+      document.querySelector('.btn2').addEventListener('click',()=>{
+        console.log('btn2 click...')
+      })
+      */
+
+      // 2. on함수 호출
+      $('.btn1').on('click',function(){
+          console.log('btn1 click')
+
+        $('.btn1').parent().next().css({
+          'color': '#f00'
+        })
+        $(this).parent().next().css({
+          'background-color':'yellow'
+        })
+      })
+    
+      $('.btn2').on({
+        'click': function(){
+
+          $(this).parent().next().css({
+            // 'font-size'=> fontSize
+            'padding':'10px',
+            'margin': '10px',
+            border: '1px solid red'
+          })
+
+          // 강제 이벤트 발생
+          //$('.btn1').trigger('click')
+          // 이벤트 제거
+          $('.btn1').off('click')
+
+        }
+      })
+
+      $('.link1 a').click(function(){
+        alert('a태그 요소 클릭')
+      })
+
+
+    })
+  </script>
+</head>
+<body>
+
+  <div class="box1">
+    <div>
+      <button class="btn1">버튼1</button>
+    </div>
+    <div>btn1 클릭 메시지</div>
+    <div>
+      <button class="btn2">버튼2</button>
+    </div>
+    <div>btn2 클릭 메시지</div>
+    <div class="link1">
+      <a href="http://google.com" >Google</a>
+    </div>
+  </div>
+ 
+
+  <!--
+    이벤트 등록 방식 3가지
+    $('이벤트대상').on('이벤트종류1 이벤트종류2..', 함수식or함수)
+    $('이벤트대상').on({'이벤트종류1 ...': 함수식or 함수})
+    $('이벤트대상').on({
+      '이벤트종류1': 함수식,
+      '이벤트종류1': 함수식,
+      '이벤트종류1': 함수식,...
+    })
+    $('이벤트대상').이벤트종류(함수식)
+
+
+  -->
+</body>
+</html>
